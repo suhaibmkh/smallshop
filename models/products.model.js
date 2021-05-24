@@ -10,7 +10,7 @@ const productSchema = mongoose.Schema({
     category: String
 });
 
-const Product = mongoose.model("product", productSchema);
+const Product = mongoose.model("user", productSchema);
 
 exports.addNewProduct = data => {
     return new Promise((resolve, reject) => {
