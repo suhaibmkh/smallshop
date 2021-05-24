@@ -14,7 +14,7 @@ const userSchema = mongoose.Schema({
     }
 });
 
-const User = mongoose.model("user", userSchema);
+const User = mongoose.model("acct", userSchema);
 
 exports.createNewUser = (username, email, password) => {
     return new Promise((resolve, reject) => {
