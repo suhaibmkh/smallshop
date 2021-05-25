@@ -1,0 +1,20 @@
+---
+application:
+  name: "smallshop"
+  project: "suhaib-onlineshop"
+  organization: "QoveryCommunity"
+  storage:
+  - name: "images"
+    size: "500"
+    type: "hdd"
+    mount_point: "/mnt/images"
+databases:
+- type: "MONGODB"
+  name: "online-shop"
+  version: "4.2"
+routers:
+- name: "main-smallshop"
+  routes:
+  - application_name: "smallshop"
+    paths:
+    - "/*"
