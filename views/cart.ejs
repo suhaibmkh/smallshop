@@ -19,7 +19,6 @@
               <h5 class="card-title">Details</h5>
               <p class="card-text"><%=items[i].description%></p>
               <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-              <input type="text" class="form-control" placeholder="New Qty" >
               <form method="POST">
                 <input type="text" name="amount" class="form-control" value="<%= items[i].amount %>">
                   <%= items[i].price * items[i].amount %> $ 
