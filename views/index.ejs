@@ -45,7 +45,7 @@
                             <button onclick="myFunction1(<%= product._id%>)">-</button>
                             
                         <form action="/cart" method="POST" class="add-to-cart-form">
-                           <input id="<%= product._id%>+'1'" type="hidden" name="amount" value=0 class="form-control" >
+                          <input type="number" name="amount" class="form-control">
                             <input type="hidden" name="name" value="<%= product.name%>">
                             <input type="hidden" name="price" value="<%= product.price%>">
                             <input type="hidden" name="productId" value="<%= product._id%>">
