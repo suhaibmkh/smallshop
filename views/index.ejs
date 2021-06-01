@@ -40,9 +40,9 @@
                             <a href="/product/<%= product._id%>"><%= product.name%></a>
                                 <p>Price: <%= product.price%> $</p>
                         </h5>
-                        <button onclick="myFunction(<%= product._id%>)">+</button>
+                        <button onclick="myFunction("<%= product._id%>")">+</button>
                             <input id="<%= product._id%>" type="number"  value=1 class="form-control" >
-                            <button onclick="myFunction1(<%= product._id%>)">-</button>
+                            <button onclick="myFunction1"<%= product._id%>")">-</button>
                             
                         <form action="/cart" method="POST" class="add-to-cart-form">
                           <input id="<%= product._id%>+1" type="number" name="amount" class="form-control">
