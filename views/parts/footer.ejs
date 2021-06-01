@@ -6,7 +6,8 @@
     <script>
 function myFunction(id) {
 let x=document.getElementById(id);
-let x1=document.getElementById(id+1);
+let x1=document.getElementById(id+"+1");
+console.log(id+"+1")
   x.value =Number(x.value)+1;
   x.innerHTML=x.value;
   x1.value=x.value; 
@@ -14,7 +15,7 @@ console.log(x1.value);
 }
 function myFunction1(id) {
 let x=document.getElementById(id);
-let x1=document.getElementById(id+1);
+let x1=document.getElementById(id+"+1");
 if(Number(x.value)>0){
   x.value =Number(x.value)-1;
   
