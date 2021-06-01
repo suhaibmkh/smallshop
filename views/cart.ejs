@@ -22,7 +22,7 @@
 	                            <input id="<%= items[i]._id%>" type="number"  value="<%= items[i].amount %>" class="form-control" >
 	                            <button onclick="myFunction1('<%= items[i]._id%>')">-</button> 
               <form method="POST">
-                <input id="<%= items[i]._id%>+1" type="text" name="amount" class="form-control" value="<%= items[i].amount %>">
+                <input id="<%= items[i]._id%>+1" type="hidden" name="amount" class="form-control" value="<%= items[i].amount %>">
                   <p class="card-text"> <%= items[i].price * items[i].amount %> $ </p>
                 <input type="hidden" name="cartId" value="<%= items[i]._id %>">
                 <input type="submit" class="btn btn-success" value="Save" formaction="/cart/save">
