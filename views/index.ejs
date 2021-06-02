@@ -1,7 +1,6 @@
 <%- include('parts/header')%>
 <%- include('parts/navbar')%>
 
-
 <div id="demo" class="carousel slide container" data-ride="carousel">
 
   <!-- Indicators -->
@@ -32,11 +31,6 @@
     <span class="carousel-control-next-icon"></span>
   </a>
 </div>
-
-
-
-
-
 
 <div class="container">
 
@@ -69,42 +63,28 @@
     <% } else { %>
     <div class="row">
         <% for(let product of products) { %>
-            <div class="col col-12 col-md-6 col-lg-4 col-xl-3" >
-                <div class="card" style="width: 100%;background-color:#F0F0F0;">
-                    <img src=""/<%= product.image%>" class="card-img-top" style="height: 200px;">
-                    <div class="card-body ">
-                        
-                          <div class="row">
-    
-                                      <div class="col-5" style="width: 50px;font-size:15px" >
-                                        <h5 class="card-title"> <a href="/product/<%= product._id%>"><%= product.name% ></a>  </h5>  
-                                                              <p>Price: <%= product.price%> $</p>
-                        
-                                      </div> 
-                                      <div class="col-7">
-
-                                          <button class="btn-sm " onclick="myFunction1('<%= product._id%>')" style="width:20%;border-radius: 8px;background-color:#F0F0F0"><span>-</span></button> 
-                                          <input id="<%= product._id%>" type="number"  value="1" style="width:50%;"> 
-                                          <button class="btn-sm " onclick="myFunction('<%= product._id%>')" style="width:20%;border-radius: 8px;;background-color:#F0F0F0"><span>+</span></button>
-                                      </div>  
-
-  
-                         </div>
-                          <form action="/cart" method="POST" class="add-to-cart-form">
-                            <input id="<%= product._id%>+1" type="hidden" name="amount" value="1" class="form-control" >
+            <div class="col col-12 col-md-6 col-lg-4 col-xl-3">
+                <div class="card" style="width: 100%;background-color:#F0F0F0">
+                    <img src="/<%= product.image%>" class="card-img-top" style="height: 200px;">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <a href="/product/<%= product._id%>"><%= product.name%></a>
+                                <p>Price: <%= product.price%> $</p>
+                        </h5>
+                        <button onclick="myFunction1('<%= product._id%>')">-</button>
+                            <input id="<%= product._id%>" type="number"  value=0  style="width:50%;" >
+                            <button onclick="myFunction('<%= product._id%>')">+</button>  
+                        <form action="/cart" method="POST" class="add-to-cart-form">
+                          <input id="<%= product._id%>+1" type="hidden" name="amount" value=0 class="form-control">
                             <input type="hidden" name="name" value="<%= product.name%>">
                             <input type="hidden" name="price" value="<%= product.price%>">
                             <input type="hidden" name="productId" value="<%= product._id%>">
                             <input type="hidden" name="redirectTo" value="/">
-                              <br>
-                            <div>
-                               <input type="submit" value="Add to cart" style="background-color:#FFDE71;width:100%;border-radius: 8px;font-size:15px">
-                            </div>
+                            <input type="submit" value="Add to cart" style="background-color:#FFDE71;width:100%">
                         </form>
-                        </div>
                     </div>
-               
-            
+                </div>
+            </div>
         <% } %>
     </div>
     <% } %>
