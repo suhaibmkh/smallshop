@@ -23,6 +23,7 @@ exports.postCart = (req, res, next) => {
             .addNewItem({
                 name: req.body.name,
                 price: req.body.price,
+                image: req.body.image,
                 amount: req.body.amount,
                 productId: req.body.productId,
                 userId: req.session.userId,
