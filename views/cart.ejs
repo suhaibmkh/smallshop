@@ -52,5 +52,48 @@
       <% } %>
                
                 <% } %>
+<div class="card mb-3" style="max-width: 540px;background-color:#F0F0F0;">
+    <div class="  row " >
+<div class="col-6">
+<p>Items(<%=items.length%>)
+    </div> 
+<div class="col-3">
+<%=total%>$
+    </div>
+
+<div class="col-6">
+<p>Shipping:</p>
+    </div> 
+<div class="col-3">
+0$
+    </div> 
+
+<div class="col-6">
+<p>Tax:</p>
+    </div> 
+<div class="col-3">
+<%=total*0.05%>$
+    </div>
+<div class="col-6">
+<p>Total:</p>
+    </div> 
+<div class="col-3">
+<%=total+total*0.05%>$
+    </div>
+
+    </div> 
+
 </div>
+Ship to:
+<div class="card mb-3" style="max-width: 540px;background-color:#F0F0F0;">
+    <div class="  row " >
+<div class="col-6">
+<p>(<%=items.userId%>)</p>
+    </div> 
+<div class="col-3">
+<%=total%>$
+
+</div>
+</div> 
+</div>		
 <%- include('parts/footer') %>
