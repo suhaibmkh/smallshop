@@ -6,13 +6,7 @@
     <% } else { %>
     <div class="card mb-3" style="max-width: 540px;background-color:#F0F0F0;">
 <form action="/cart" method="POST" class="add-to-cart-form">
-<input id="<%= product._id%>+1" type="hidden" name="amount" value=0 class="form-control">
-<input type="hidden" name="name" value="<%= product.name%>">
-																				
-<input type="hidden" name="price" value="<%= product.price%>">
-<input type="hidden" name="productId" value="<%= product._id%>">
-<input type="hidden" name="redirectTo" value="/">
-																							
+																	
 <input type="submit" value="Place your order" style="background-color:#FFDE71;width:100%;border-radius: 8px;">
 																							
 </form>
