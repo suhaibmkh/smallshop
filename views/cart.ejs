@@ -1,8 +1,6 @@
 <%- include('parts/header') %>
 <%- include('parts/navbar') %>
-
 <div class="container">
-
     <% if(items.length === 0) { %>
         <p class="alert alert-danger">There is no items</p>
     <% } else { %>
@@ -11,6 +9,7 @@
       <div class="card mb-3" style="max-width: 540px;background-color:#F0F0F0;">
         <div class="row no-gutters">
           <div class="col-md-4">
+            <img src="/<%= items[i].image %>" alt="...">
             <img src="/<%= items[i].image %>" style="width: 95%;hight:95%;" alt="...">
           </div>
           <div class="col-md-8">
@@ -19,7 +18,7 @@
               <h5 class="card-title">Details</h5>
               <p class="card-text"><%=items[i].description%></p>
               <button onclick="myFunction('<%= items[i]._id%>')">+</button>
-                            <input id="<%= items[i]._id%>" type="number"  value=<%= items[i].amount %>  style="width:50%;" >
+                            <input id="<%= items[i]._id%>" type="number"  value=0  style="width:50%;" >
                             <button onclick="myFunction1('<%= items[i]._id%>')">-</button>
               <form method="POST">
                 <input id="<%= items[i]._id%>+1" type="hidden" name="amount" class="form-control" value="<%= items[i].amount %>">
@@ -38,8 +37,5 @@
       <% } %>
                
                 <% } %>
-
-
 </div>
-
 <%- include('parts/footer') %>
