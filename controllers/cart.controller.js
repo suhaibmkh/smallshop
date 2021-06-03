@@ -26,6 +26,7 @@ exports.postCart = (req, res, next) => {
                 image: req.body.image,
                 amount: req.body.amount,
                 productId: req.body.productId,
+            description: req.body.description,
                 userId: req.session.userId,
                 timestamp: Date.now()
             })
