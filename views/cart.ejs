@@ -11,9 +11,9 @@
 																							
 </form>
 </div>
-var total=0
+
       <% for (let i = 0; i < items.length; i++) { %>
-      total+=<%=items[i].price%>
+    
       <div class="card mb-3" style="max-width: 540px;background-color:#F0F0F0;">
         <div class="row no-gutters">
           <div class="col-md-4">
@@ -57,10 +57,10 @@ var total=0
 <div class="card mb-3" style="max-width: 540px;background-color:#F0F0F0;">
     <div class="  row " >
 <div class="col-6">
-<p>Items(<%=items.length%>)
+<p>Items()
     </div> 
 <div class="col-3">
-<%=total%>$
+$
     </div>
 
 <div class="col-6">
@@ -74,13 +74,13 @@ var total=0
 <p>Tax:</p>
     </div> 
 <div class="col-3">
-<%=total*0.05%>$
+$
     </div>
 <div class="col-6">
 <p>Total:</p>
     </div> 
 <div class="col-3">
-<%=total+total*0.05%>$
+$
     </div>
 
     </div> 
@@ -93,7 +93,7 @@ Ship to:
 <p>(<%=items.userId%>)</p>
     </div> 
 <div class="col-3">
-<%=total%>$
+<a hred="#">></a>
 
 </div>
 </div> 
