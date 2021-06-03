@@ -13,26 +13,36 @@
           <div class="col-md-4">
             <img src="/<%= items[i].image %>" style="width: 95%;hight:95%;" alt="<%= items[i].name %>">
           </div>
-          <div class="col-md-8">
+           <div class="col-md-8">
             <div class="card-body">
               <h5 class="card-title"><%= items[i].name %></h5>
               <h5 class="card-title">Details</h5>
               <p class="card-text"><%=items[i].description%></p>
-              <button onclick="myFunction1('<%= items[i]._id%>')" style="border-radius: 6px;width:10%">-</button>
-                            <input id="<%= items[i]._id%>" type="number"  value=<%= items[i].amount %>  style="width:50%;" >
-                            <button onclick="myFunction('<%= items[i]._id%>')" style="border-radius: 6px;width:10%">+</button>
-              <form method="POST">
-                <input id="<%= items[i]._id%>+1" type="hidden" name="amount" class="form-control" value="<%= items[i].amount %>">
-                  <p class="card-text"> <%= items[i].price * items[i].amount %> $ </p>
-                <input type="hidden" name="cartId" value="<%= items[i]._id %>">
-                <input type="submit" class="btn btn-success" value="Save" formaction="/cart/save">
-                <a class="btn btn-primary" href="/verify-order?order=<%= items[i]._id %>"> Order </a>
-                <input type="submit" class="btn btn-danger" value="Delete" formaction="/cart/delete">
-        
-              </form>
+             
      
             </div>
+ 
           </div>
+
+<div class=" container row" >
+
+<div class="col-9">
+<br>
+<button onclick="myFunction1('<%= items[i]._id%>')" style="border-radius: 6px;width:10%">-</button>
+<input id="<%= items[i]._id%>" type="number"  value="<%= items[i].amount %>"  style="width:20%;" >
+<button onclick="myFunction('<%= items[i]._id%>')" style="border-radius: 6px;width:10%">+</button>
+</div>
+<div class="col-3">
+
+<form method="POST">
+   <br>            
+                  
+                <input type="submit"  style="border-radius: 6px;width:100%;background-color:white;color:black;" value="Delete" formaction="/cart/delete">
+        
+              </form>
+</div>
+</div>
+
         </div>
       </div>
       <% } %>
