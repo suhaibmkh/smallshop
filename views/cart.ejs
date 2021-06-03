@@ -18,9 +18,9 @@
               <h5 class="card-title"><%= items[i].name %></h5>
               <h5 class="card-title">Details</h5>
               <p class="card-text"><%=items[i].description%></p>
-              <button onclick="myFunction1('<%= items[i]._id%>')" style="border-radius: 6px;width:10%">-</button>
+              <button onclick="myFunction('<%= items[i]._id%>')">+</button>
                             <input id="<%= items[i]._id%>" type="number"  value=<%= items[i].amount %>  style="width:50%;" >
-                            <button onclick="myFunction('<%= items[i]._id%>')" style="border-radius: 6px;width:10%">+</button>
+                            <button onclick="myFunction1('<%= items[i]._id%>')">-</button>
               <form method="POST">
                 <input id="<%= items[i]._id%>+1" type="hidden" name="amount" class="form-control" value="<%= items[i].amount %>">
                   <p class="card-text"> <%= items[i].price * items[i].amount %> $ </p>
