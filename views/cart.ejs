@@ -13,18 +13,18 @@
 </div>
 
       <% for (let i = 0; i < items.length; i++) { %>
-    
+    <%total=Number(total)+ items[i].name %>
       <div class="card mb-3" style="max-width: 540px;background-color:#F2FCFF;">
         <div class="row no-gutters">
           <div class="col-md-4">
-            <img src="/<%= items[i].image %>"" style="width: 95%;hight:95%;" alt="<%= items[i].name %>">
+            <img src="/<%= items[i].image %>"" style="width: 95%;height:95%;" alt="<%= items[i].name %>">
           </div>
           <div class="col-md-8">
             <div class="card-body">
               <h5 class="card-title"><%= items[i].name %></h5>
               <h5 class="card-title">Details</h5>
               <p class="card-text"><%=items[i].description%></p>
-             
+             <p class="card-text"><%=items[i].price>$</p>
      
             </div>
  
@@ -57,10 +57,10 @@
 <div class="card mb-3" style="max-width: 540px;background-color:#F0F0F0;">
     <div class="  row " >
 <div class="col-10">
-<p>Items()
+<p>Items()</p>
     </div> 
 <div class="col-2">
-$
+<%=total%>$
     </div>
 
 <div class="col-10">
@@ -74,13 +74,13 @@ $
 <p>Tax:</p>
     </div> 
 <div class="col-2">
-$
+<%=Math.round(total*0.05)%>$$
     </div>
 <div class="col-10">
 <p>Total:</p>
     </div> 
 <div class="col-2">
-$
+<%=Math.round(total*0.05)+total%>$
     </div>
 
     </div> 
@@ -90,7 +90,7 @@ Ship to:
 <div class="card mb-3" style="max-width: 540px;background-color:#F0F0F0;">
     <div class="  row " >
 <div class="col-10">
-<p>(<%=items.userId%>)</p>
+<p>(<%=items[0].userId%>)</p>
     </div> 
 <div class="col-2">
 <a hred="#">></a>
