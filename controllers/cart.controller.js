@@ -9,7 +9,8 @@ exports.getCart = (req, res, next) => {
                 items: items,
                 isUser: true,
                 isAdmin: req.session.isAdmin,
-                pageTitle: "Cart"
+                pageTitle: "Cart",
+                total:"0"
             });
         })
         .catch(err => {
