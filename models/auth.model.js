@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
+const nodemailer = require("nodemailer");
 
 const tokenSchema = new mongoose.Schema({
     _userId: { type: mongoose.Schema.Types.ObjectId, required: true, ref: 'User' },
@@ -19,7 +20,8 @@ const userSchema = mongoose.Schema({
     isAdmin: {
         type: Boolean,
         default: false
-    }
+    },
+     isVerified: { type: Boolean, default: false },
 });
 const User = mongoose.model("acct", userSchema);
 
