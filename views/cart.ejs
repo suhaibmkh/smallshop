@@ -11,27 +11,24 @@
 																							
 </form>
 </div>
-
       <% for (let i = 0; i < items.length; i++) { %>
-          
+    
       <div class="card mb-3" style="max-width: 540px;background-color:#F2FCFF;">
         <div class="row no-gutters">
           <div class="col-md-4">
-            <img src="/<%= items[i].image %>" style="width: 95%;height:95%;" alt="<%= items[i].name %>">
+            <img src="/<%= items[i].image %>"" style="width: 95%;hight:95%;" alt="<%= items[i].name %>">
           </div>
           <div class="col-md-8">
             <div class="card-body">
               <h5 class="card-title"><%= items[i].name %></h5>
               <h5 class="card-title">Details</h5>
               <p class="card-text"><%=items[i].description%></p>
-             <p class="card-text"><%=items[i].price>$</p>
+             
      
             </div>
  
           </div>
-
 <div class=" container row" >
-
 <div class="col-9">
 <br>
 <button onclick="myFunction1('<%= items[i]._id%>')" style="border-radius: 6px;width:10%">-</button>
@@ -39,7 +36,6 @@
 <button onclick="myFunction('<%= items[i]._id%>')" style="border-radius: 6px;width:10%">+</button>
 </div>
 <div class="col-3">
-
 <form method="POST">
    <br>            
                   
@@ -48,7 +44,6 @@
               </form>
 </div>
 </div>
-
         </div>
       </div>
       <% } %>
@@ -57,19 +52,17 @@
 <div class="card mb-3" style="max-width: 540px;background-color:#F0F0F0;">
     <div class="  row " >
 <div class="col-10">
-<p>Items(<%=items.length%>)</p>
+<p>Items()
     </div> 
 <div class="col-2">
 $
     </div>
-
 <div class="col-10">
 <p>Shipping:</p>
     </div> 
 <div class="col-2">
 0$
     </div> 
-
 <div class="col-10">
 <p>Tax:</p>
     </div> 
@@ -82,15 +75,13 @@ $
 <div class="col-2">
 $
     </div>
-
     </div> 
-
 </div>
 Ship to:
 <div class="card mb-3" style="max-width: 540px;background-color:#F0F0F0;">
     <div class="  row " >
 <div class="col-10">
-<p>(<%=items[0].userId%>)</p>
+<p>(<%=items.userId%>)</p>
     </div> 
 <div class="col-2">
 <a hred="#">></a>
