@@ -10,7 +10,7 @@ exports.getCart = (req, res, next) => {
                 isUser: true,
                 isAdmin: req.session.isAdmin,
                 pageTitle: "Cart",
-                total:0
+                total:"0"
             });
         })
         .catch(err => {
