@@ -13,10 +13,7 @@ router.post(
     "/orders",
     authGuard.isAuth,
     bodyParser.urlencoded({ extended: true }),
-    check("address")
-        .not()
-        .isEmpty()
-        .withMessage("address is required"),
+
     orderController.postOrder
 );
 
