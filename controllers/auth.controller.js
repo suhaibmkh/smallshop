@@ -14,7 +14,7 @@ exports.getSignup = (req, res, next) => {
 exports.postSignup = (req, res, next) => {
     if (validationResult(req).isEmpty()) {
         authModel
-            .createNewUser(req.body.username, req.body.email, req.body.password)
+            .createNewUser(req.body.username, req.body.email, req.body.password, req.body.address, req.body.phone)
             .then(() => res.redirect("/login"))
             .catch(err => {
                 req.flash("authError", err);
@@ -41,7 +41,10 @@ exports.postLogin = (req, res, next) => {
         authModel
             .login(req.body.email, req.body.password)
             .then(result => {
+
                 req.session.userId = result.id;
+                req.session.address = result.address;
+                req.session.phone = result.phone;
                 req.session.isAdmin = result.isAdmin;
                 res.redirect("/");
             })

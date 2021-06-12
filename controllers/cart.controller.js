@@ -8,7 +8,10 @@ exports.getCart = (req, res, next) => {
             res.render("cart", {
                 items: items,
                 isUser: true,
+                userId: req.session.userId,
                 isAdmin: req.session.isAdmin,
+                address: req.session.address,
+                phone: req.session.phone,
                 pageTitle: "Cart",
                 total: 0
             });
