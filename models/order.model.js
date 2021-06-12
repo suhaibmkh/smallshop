@@ -18,18 +18,52 @@ const orderSchema = mongoose.Schema({
     },
     timestamp: Number
 });
+const orderListSchema = mongoose.Schema({
+    orderlist: [],
+    amount: Number,
+    userId: String,
+    timestamp: Number,
+
+
+    status: {
+        type: String,
+        default: "pending"
+    },
+
+});
 
 const Order = mongoose.model("order", orderSchema);
+const OrderL = mongoose.model("orderl", orderListSchema);
 
 exports.addNewOrder = data => {
+
+    var key, m, m1, m2;
+    var orderList1 = []
+    var i = 0;
+    for (key in data) {
+        if (data.hasOwnProperty(key));
+        i++
+    }
+    for (let j = 0; j < i / 2; j++) {
+        m = data["test" + j]
+        m1 = data["test" + j + "10"]
+        m2 = data["test" + j + "5"]
+        orderList1.push({ amount: m, id: m1, name: m2 })
+    }
+
     return new Promise((resolve, reject) => {
         cartModel
-            .deleteItem(data.cartId)
-            .then(() => mongoose.connect(DB_URL))
+            .deleteAllItem()
+            .then(() =>
+                mongoose.connect(DB_URL))
             .then(() => {
-                data.timestamp = Date.now();
-                let order = new Order(data);
-                return order.save();
+                // data.timestamp = Date.now();
+
+
+                var data1 = { orderlist: orderList1, userId: data.id, timestamp: Date.now() }
+
+                let orderl = new OrderL(data1);
+                return orderl.save();
             })
             .then(() => {
                 mongoose.disconnect();
@@ -47,13 +81,10 @@ exports.getOrdersByUser = userId => {
         mongoose
             .connect(DB_URL)
             .then(() => {
-                return Order.find(
-                    { userId: userId },
-                    {},
-                    { sort: { timestamp: 1 } }
-                );
+                return OrderL.find({ userId: userId }, {}, { sort: { timestamp: 1 } });
             })
             .then(items => {
+                console.log(items)
                 mongoose.disconnect();
                 resolve(items);
             })

@@ -8,10 +8,10 @@ const cartSchema = mongoose.Schema({
     amount: Number,
     userId: String,
     productId: String,
-    image:String,
-   description:String,
+    image: String,
+    image: String,
     timestamp: Number,
-    
+    description: String,
 });
 
 const CartItem = mongoose.model("cart", cartSchema);
@@ -40,11 +40,7 @@ exports.getItemsByUser = userId => {
         mongoose
             .connect(DB_URL)
             .then(() => {
-                return CartItem.find(
-                    { userId: userId },
-                    {},
-                    { sort: { timestamp: 1 } }
-                );
+                return CartItem.find({ userId: userId }, {}, { sort: { timestamp: 1 } });
             })
             .then(items => {
                 mongoose.disconnect();
@@ -78,6 +74,21 @@ exports.deleteItem = id => {
         mongoose
             .connect(DB_URL)
             .then(() => CartItem.findByIdAndDelete(id))
+            .then(() => {
+                mongoose.disconnect();
+                resolve();
+            })
+            .catch(err => {
+                mongoose.disconnect();
+                reject(err);
+            });
+    });
+};
+exports.deleteAllItem = () => {
+    return new Promise((resolve, reject) => {
+        mongoose
+            .connect(DB_URL)
+            .then(() => CartItem.deleteMany({ amount: { $gte: 0 } }))
             .then(() => {
                 mongoose.disconnect();
                 resolve();
