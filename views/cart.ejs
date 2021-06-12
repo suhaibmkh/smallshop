@@ -7,12 +7,12 @@
                     <div class="card mb-3" style="max-width: 540px;background-color:#F0F0F0;">
                         <form action="/orders" method="POST" class="add-to-cart-form">
                             <% for (let i = 0; i < items.length; i++) { %>
-                                <input type="text" name="test<%=i%>" value=<%=items[i].amount%>>
-                                <input type="text" name="test<%=i%>5" value=<%=items[i].name%>>
+                                <input type="hidden" name="test<%=i%>" value=<%=items[i].amount%>>
+                                <input type="hidden" name="test<%=i%>5" value=<%=items[i].name%>>
 
                                 <input type="text" name="test<%=i%>10" value="<%=items[i].productId%>">
                                 <%}%>
-                                    <input type="text" name="id" value=<%=items[0].userId%>>
+                                    <input type="hidden" name="id" value=<%=items[0].userId%>>
                                     <input type="submit" value="Place your order" style="background-color:#FFDE71;width:100%;border-radius: 8px;">
 
                         </form>
