@@ -33,14 +33,18 @@ exports.getOrder = (req, res, next) => {
 };
 
 exports.postOrder = (req, res, next) => {
-    if (validationResult(req).isEmpty())
+
+
+    if (validationResult(req).isEmpty()) {
+
         orderModel
+
             .addNewOrder(req.body)
             .then(() => res.redirect("/orders"))
             .catch(err => {
                 res.redirect("/error");
             });
-    else {
+    } else {
         req.flash("validationErrors", validationResult(req).array());
         res.redirect("/verify-order?order=" + req.body.cartId);
     }

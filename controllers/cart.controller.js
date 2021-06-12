@@ -10,7 +10,7 @@ exports.getCart = (req, res, next) => {
                 isUser: true,
                 isAdmin: req.session.isAdmin,
                 pageTitle: "Cart",
-              
+                total: 0
             });
         })
         .catch(err => {
@@ -27,7 +27,7 @@ exports.postCart = (req, res, next) => {
                 image: req.body.image,
                 amount: req.body.amount,
                 productId: req.body.productId,
-            description: req.body.description,
+                description: req.body.description,
                 userId: req.session.userId,
                 timestamp: Date.now()
             })
@@ -46,6 +46,7 @@ exports.postCart = (req, res, next) => {
 exports.postSave = (req, res, next) => {
     if (validationResult(req).isEmpty()) {
         cartModel
+
             .editItem(req.body.cartId, {
                 amount: req.body.amount,
                 timestamp: Date.now()
