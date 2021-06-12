@@ -1,46 +1,59 @@
 <%- include('parts/header') %>
-<%- include('parts/navbar') %>
+    <%- include('parts/navbar') %>
 
-<div class="container">
+        <div class="container">
 
-    <% if(items.length === 0) { %>
-        <p class="alert alert-danger">There is no items</p>
-    <% } else { %>
-    
-        <table>
-            <thead>
-                <td>no</td>
-                <td>Product name</td>
-                <td>Price</td>
-                <td>Amount</td>
-                <td>Total</td>
-                <td>Address</td>
-                <td>Status</td>
-                <td></td>
-            </thead>
-            <tbody>
-                <% for (let i = 0; i < items.length; i++) { %>
-                    <tr>
-                        <td> <%= i+1 %> </td>
-                        <td> <a href="/product/<%= items[i].productId %>"><%= items[i].name %></a> </td>
-                        <td> <%= items[i].price %> $ </td>
-                        <form method="POST">
-                            <td> <%= items[i].amount %> </td>
-                            <td> <%= items[i].price * items[i].amount %> $ </td>
-                            <td> <%= items[i].address %> </td>
-                            <td> <%= items[i].status %> </td>
-                            <td>
-                                <input type="hidden" name="orderId" value="<%= items[i]._id %>">
-                                <input type="submit" class="btn btn-danger" value="Cancel" formaction="/orders/cancel">
-                            </td>
-                        </form>
-                    </tr>
+            <% if(items.length === 0) { %>
+                <p class="alert alert-danger">There is no items</p>
+                <% } else { %>
+                    <h5 style="background-color:  #8ED1E5;">Orders</h5>
+        </div>
+
+        <% for (let i = 0; i < items.length; i++) { %>
+            <div class="container">
+                <div class="card mb-3 " style="max-width: 540px;background-color:#F2FCFF; ">
+                    <div class="row no-gutters ">
+                        <div class="col-md-4 ">
+
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h3>
+                                    Order No:
+                                    <%= items[i].timestamp%>
+                                </h3>
+                                <h5 class="card-title">
+                                    <% for (let j = 0; j < items[i].orderlist.length; j++){%>
+
+                                        <p>
+
+                                            <a href="/product/<%= items[i].orderlist[j].id %>">
+                                                <%= items[i].orderlist[j].name%>
+                                            </a>
+                                        </p>
+                                        <%}%>
+
+                                </h5>
+
+
+
+
+                                <p>
+                                    <%= items[i].status %>
+                                </p>
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <% } %>
+
+
                 <% } %>
-            </tbody>
-        </table>
 
-    <% } %>
 
-</div>
 
-<%- include('parts/footer') %>
+                    <%- include('parts/footer') %>
