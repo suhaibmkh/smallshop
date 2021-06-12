@@ -1,101 +1,106 @@
 <%- include('parts/header')%>
-<%- include('parts/navbar')%>
+    <%- include('parts/navbar')%>
 
-<div id="demo" class="carousel slide container" data-ride="carousel">
+        <div id="demo" class="carousel slide container" data-ride="carousel">
 
-  <!-- Indicators -->
-  <ul class="carousel-indicators">
-    <li data-target="#demo" data-slide-to="0" class="active"></li>
-    <li data-target="#demo" data-slide-to="1"></li>
-    <li data-target="#demo" data-slide-to="2"></li>
-  </ul>
-  
-  <!-- The slideshow -->
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="/1.jpg"  style="height: 200px;" alt="..." >
-    </div>
-    <div class="carousel-item">
-      <img src="/2.jpg"  style="height: 200px;" alt="..." >
-    </div>
-    <div class="carousel-item">
-       <img src="/3.jpg"  style="height: 200px;" alt="..." >
-    </div>
-  </div>
-  
-  <!-- Left and right controls -->
-  <a class="carousel-control-prev" href="#demo" data-slide="prev">
-    <span class="carousel-control-prev-icon"></span>
-  </a>
-  <a class="carousel-control-next" href="#demo" data-slide="next">
-    <span class="carousel-control-next-icon"></span>
-  </a>
-</div>
+            <!-- Indicators -->
+            <ul class="carousel-indicators">
+                <li data-target="#demo" data-slide-to="0" class="active"></li>
+                <li data-target="#demo" data-slide-to="1"></li>
+                <li data-target="#demo" data-slide-to="2"></li>
+            </ul>
 
-<div class="container">
+            <!-- The slideshow -->
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="/1.jpg" style="height: 200px;" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="/2.jpg" style="height: 200px;" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="/3.jpg" style="height: 200px;" alt="...">
+                </div>
+            </div>
 
-    <form class="filter" action="/" method="GET">
-        <div class="row">
-            <div class="col col-md-10">
-                <select name="category" class="form-control">
+            <!-- Left and right controls -->
+            <a class="carousel-control-prev" href="#demo" data-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </a>
+            <a class="carousel-control-next" href="#demo" data-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </a>
+        </div>
+
+        <div class="container">
+
+            <form class="filter" action="/" method="GET">
+                <div class="row">
+                    <div class="col col-md-10">
+                        <select name="category" class="form-control">
                     <option value="all">All</option>
                     <option value="clothes">Clothes</option>
                     <option value="phones">Phones</option>
                     <option value="computers">Computers</option>
                 </select>
-            </div>
-            <div class="col col-md-2">
-                <input type="submit" class="btn btn-primary" value="Filter">
-            </div>
-        </div>
-    </form>
-
-    <% if(validationError) { %>
-        <p class="alert alert-danger">
-            <%= validationError.msg%>
-        </p>
-    <% } %>
-
-    <% if(products.length === 0) { %>
-    <div class="alert alert-danger">
-        there is no products
-    </div>
-    <% } else { %>
-    <div class="row">
-        <% for(let product of products) { %>
-             <div class="col col-12 col-md-6 col-lg-4 col-xl-3">
-                <div class="card" style="width: 100%;background-color:#F0F0F0">
-                    <img src="/<%= product.image%>" class="card-img-top" style="height: 200px;">
-                    <div class="card-body">
-                        
-                            <div class="row">
-                                <div class="col-4">
-                                  <h5 class="card-title" style="font-size:15px;"><a href="/product/<%= product._id%>"><%= product.name%></a><p  style="font-size:13px;">Price: <%= product.price%> $</p>
-                                  </h5>
-                                </div>
-                                <div class="col-8">
-                                 <button class="btn-sm" onclick="myFunction1('<%= product._id%>')" style="border-radius: 6px;width:10%">-</button>
-                            <input id="<%= product._id%>" type="number"  value=0  style="width:50%;" >
-                            <button class="btn-sm" onclick="myFunction('<%= product._id%>')" style="border-radius: 6px;width:10%">+</button>  
-                                </div>
-                                
-                            </div>
-                            
-                       
-                        <form action="/cart" method="POST" class="add-to-cart-form">
-                          <input id="<%= product._id%>+1" type="hidden" name="amount" value=0 class="form-control">
-                            <input type="hidden" name="name" value="<%= product.name%>">
-                            <input type="hidden" name="price" value="<%= product.price%>">
-                            <input type="hidden" name="productId" value="<%= product._id%>">
-                            <input type="hidden" name="redirectTo" value="/">
-                            <input type="submit" value="Add to cart" style="background-color:#FFDE71;width:100%;border-radius: 8px;">
-                        </form>
+                    </div>
+                    <div class="col col-md-2">
+                        <input type="submit" class="btn btn-primary" value="Filter">
                     </div>
                 </div>
-            </div>
-        <% } %>
-    </div>
-    <% } %>
-</div>
+            </form>
 
-<%- include('parts/footer')%>
+            <% if(validationError) { %>
+                <p class="alert alert-danger">
+                    <%= validationError.msg%>
+                </p>
+                <% } %>
+
+                    <% if(products.length === 0) { %>
+                        <div class="alert alert-danger">
+                            there is no products
+                        </div>
+                        <% } else { %>
+                            <div class="row">
+                                <% for(let product of products) { %>
+                                    <div class="col col-12 col-md-6 col-lg-4 col-xl-3">
+                                        <div class="card" style="width: 100%;background-color:#F0F0F0">
+                                            <img src="/<%= product.image%>" class="card-img-top" style="height: 200px;">
+                                            <div class="card-body">
+
+                                                <div class="row">
+                                                    <div class="col-4">
+                                                        <h5 class="card-title" style="font-size:15px;">
+                                                            <a href="/product/<%= product._id%>">
+                                                                <%= product.name%>
+                                                            </a>
+                                                            <p style="font-size:13px;">Price:
+                                                                <%= product.price%> $</p>
+                                                        </h5>
+                                                    </div>
+                                                    <div class="col-8">
+                                                        <button class="btn-sm" onclick="myFunction1('<%= product._id%>')" style="border-radius: 6px;width:10%">-</button>
+                                                        <input id="<%= product._id%>" type="number" value=0 style="width:50%;">
+                                                        <button class="btn-sm" onclick="myFunction('<%= product._id%>')" style="border-radius: 6px;width:10%">+</button>
+                                                    </div>
+
+                                                </div>
+
+
+                                                <form action="/cart" method="POST" class="add-to-cart-form">
+                                                    <input id="<%= product._id%>+1" type="hidden" name="amount" value=0 class="form-control">
+                                                    <input type="hidden" name="name" value="<%= product.name%>">
+                                                    <input type="hidden" name="price" value="<%= product.price%>">
+                                                    <input type="hidden" name="productId" value="<%= product._id%>">
+                                                    <input type="hidden" name="redirectTo" value="/">
+                                                    <input type="submit" value="Add to cart" style="background-color:#FFDE71;width:100%;border-radius: 8px;">
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <% } %>
+                            </div>
+                            <% } %>
+        </div>
+
+        <%- include('parts/footer')%>
