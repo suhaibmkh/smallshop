@@ -11,12 +11,14 @@ const userSchema = mongoose.Schema({
     isAdmin: {
         type: Boolean,
         default: false
-    }
+    },
+    address: String,
+    phone: String,
 });
 
 const User = mongoose.model("acct", userSchema);
 
-exports.createNewUser = (username, email, password) => {
+exports.createNewUser = (username, email, password, address, phone) => {
     return new Promise((resolve, reject) => {
         mongoose
             .connect(DB_URL)
@@ -28,6 +30,8 @@ exports.createNewUser = (username, email, password) => {
                     mongoose.disconnect();
                     reject("email is used");
                 } else {
+
+
                     return bcrypt.hash(password, 10);
                 }
             })
@@ -35,6 +39,8 @@ exports.createNewUser = (username, email, password) => {
                 let user = new User({
                     username: username,
                     email: email,
+                    address: address,
+                    phone: phone,
                     password: hashedPassword
                 });
                 return user.save();
@@ -68,6 +74,8 @@ exports.login = (email, password) => {
                             mongoose.disconnect();
                             resolve({
                                 id: user.email,
+                                address: user.address,
+                                phone: user.phone,
                                 isAdmin: user.isAdmin
                             });
                         }
