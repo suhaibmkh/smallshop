@@ -23,6 +23,7 @@ exports.getCart = (req, res, next) => {
 
 exports.postCart = (req, res, next) => {
     if (validationResult(req).isEmpty()) {
+        console.log(req.body)
         cartModel
             .addNewItem({
                 name: req.body.name,
