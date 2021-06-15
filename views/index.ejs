@@ -92,6 +92,8 @@
                                                     <input type="hidden" name="name" value="<%= product.name%>">
                                                     <input type="hidden" name="price" value="<%= product.price%>">
                                                     <input type="hidden" name="productId" value="<%= product._id%>">
+                                                    <input type="hidden" name="image" value="<%= product.image[0].filename%>">
+
                                                     <input type="hidden" name="redirectTo" value="/">
                                                     <input type="submit" value="Add to cart" style="background-color:#FFDE71;width:100%;border-radius: 8px;">
                                                 </form>
