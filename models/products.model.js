@@ -4,7 +4,7 @@ const DB_URL =
     "mongodb+srv://suhaib-khater_80:Galaxy-sm1@cluster0.vzcs0.mongodb.net/online-shop?retryWrites=true&w=majority";
 const productSchema = mongoose.Schema({
     name: String,
-    image: String,
+    image: {},
     price: Number,
     description: String,
     category: String
