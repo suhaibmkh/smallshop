@@ -14,7 +14,7 @@ exports.getAdd = (req, res, next) => {
 
 exports.postAdd = (req, res, next) => {
     if (validationResult(req).isEmpty()) {
-        req.body.image = req.file.filename;
+        req.body.image = req.files;
         productsModel
             .addNewProduct(req.body)
             .then(() => {
