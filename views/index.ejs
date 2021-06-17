@@ -67,16 +67,16 @@
                                         <div class="card" style="width: 100%;background-color:#F0F0F0">
                                         <div class="card-header">
                                         
-                                             <div id="demo1" class="carousel slide container" data-ride="carousel">
+                                             <div id="<%=product._id%>+demo" class="carousel slide container" data-ride="carousel">
 
                                                      <!-- Indicators -->
                                                        <ul class="carousel-indicators">
                                                            <%var i=0 %>
                                                           <%for (image of product.image){ %>
                                                             <% if (i===0){%>
-                                                              <li data-target="#demo1" data-slide-to="<%=i%>" class="active"></li>
+                                                              <li data-target="#<%=product._id%>+demo" data-slide-to="<%=i%>" class="active"></li>
                                                             <%}else{%>
-                                                              <li data-target="#demo1" data-slide-to="<%=i%>"></li>
+                                                              <li data-target="#<%=product._id%>+demo" data-slide-to="<%=i%>"></li>
                                                             <%}%>
                                                             <%i++%>
                                                           <%}%>
@@ -102,10 +102,10 @@
                
 
                                                  <!-- Left and right controls -->
-                                                   <a class="carousel-control-prev" href="#demo1" data-slide="prev">
+                                                   <a class="carousel-control-prev" href="#<%=product._id%>+demo" data-slide="prev">
                                                             <span class="carousel-control-prev-icon"></span>
                                                    </a>
-                                                   <a class="carousel-control-next" href="#demo1" data-slide="next">
+                                                   <a class="carousel-control-next" href="#<%=product._id%>+demo" data-slide="next">
                                                            <span class="carousel-control-next-icon"></span>
                                                   </a>
                                            </div>
