@@ -65,7 +65,48 @@
                                 <% for(let product of products) { %>
                                     <div class="col col-12 col-md-6 col-lg-4 col-xl-3">
                                         <div class="card" style="width: 100%;background-color:#F0F0F0">
-                                            <img src="/<%= product.image[0].filename%>" class="card-img-top" style="height: 200px;" alt="<%= product.image[1].originalname%>">
+                                        
+                                        
+                                        <div id="demo" class="carousel slide container" data-ride="carousel">
+
+            <!-- Indicators -->
+            <ul class="carousel-indicators">
+            <%var i=0 %>
+            <%for (image of product.image){ %>
+            <% if (i===0){%>
+                <li data-target="#demo" data-slide-to="<%=i%>" class="active"></li>
+                <%}else{%>
+                 <li data-target="#demo" data-slide-to="<%=i%>"></li>
+                <%}%>
+                <%i++%>
+                <%}%>
+            </ul>
+
+            <!-- The slideshow -->
+            <div class="carousel-inner">
+            <% i=0 %>
+             <%for (image of product.image){ %>
+                <div class="carousel-item active">
+                     <img src="/<%= product.image[i].filename%>" class="card-img-top" style="height: 200px;" alt="<%= product.image[i].originalname%>">
+                </div>
+                <%i++%>
+                <%}%>
+               
+
+            <!-- Left and right controls -->
+            <a class="carousel-control-prev" href="#demo" data-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </a>
+            <a class="carousel-control-next" href="#demo" data-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </a>
+        </div>
+
+                                        
+                                        
+                                        
+                                        
+                                           
                                             <div class="card-body">
 
                                                 <div class="row">
