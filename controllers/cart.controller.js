@@ -1,29 +1,34 @@
 const cartModel = require("../models/cart.model");
+const confirmAdressModel = require("../models/cofirmAddress.model");
 const validationResult = require("express-validator").validationResult;
 
 exports.getCart = (req, res, next) => {
-    cartModel
-        .getItemsByUser(req.session.userId)
-        .then(items => {
-            res.render("cart", {
-                items: items,
-                isUser: true,
-                userId: req.session.userId,
-                isAdmin: req.session.isAdmin,
-                address: req.session.address,
-                phone: req.session.phone,
-                pageTitle: "Cart",
-                total: 0
-            });
+    confirmAdressModel.getAddressDetails(req.session.userId)
+        .then(addresses => {
+
+            cartModel
+                .getItemsByUser(req.session.userId)
+                .then((items) => {
+                    res.render("cart", {
+                        addresses: addresses,
+                        items: items,
+                        isUser: true,
+                        isAdmin: req.session.isAdmin,
+                        pageTitle: "Cart",
+                        total: 0
+                    });
+                })
         })
-        .catch(err => {
-            res.redirect("/error");
-        });
+
+    .catch(err => {
+        res.redirect("/error");
+    });
 };
+
 
 exports.postCart = (req, res, next) => {
     if (validationResult(req).isEmpty()) {
-        console.log(req.body)
+
         cartModel
             .addNewItem({
                 name: req.body.name,

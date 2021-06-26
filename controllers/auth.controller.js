@@ -43,8 +43,7 @@ exports.postLogin = (req, res, next) => {
             .then(result => {
 
                 req.session.userId = result.id;
-                req.session.address = result.address;
-                req.session.phone = result.phone;
+
                 req.session.isAdmin = result.isAdmin;
                 res.redirect("/");
             })
