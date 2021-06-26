@@ -45,8 +45,8 @@ exports.postPay = (req, res, next) => {
                             payment_method: "paypal",
                         },
                         redirect_urls: {
-                            return_url: "http://127.0.0.1:3000/success",
-                            cancel_url: "http://127.0.0.1:3000/cancel",
+                            return_url: "https://suhaib-shop.herokuapp.com//success",
+                            cancel_url: "https://suhaib-shop.herokuapp.com//cancel",
                         },
                         transactions: [{
                             item_list: {
