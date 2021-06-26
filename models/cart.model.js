@@ -36,6 +36,7 @@ exports.addNewItem = data => {
 };
 
 exports.getItemsByUser = userId => {
+
     return new Promise((resolve, reject) => {
         mongoose
             .connect(DB_URL)
@@ -43,13 +44,20 @@ exports.getItemsByUser = userId => {
                 return CartItem.find({ userId: userId }, {}, { sort: { timestamp: 1 } });
             })
             .then(items => {
+
+
+
                 mongoose.disconnect();
                 resolve(items);
-            })
-            .catch(err => {
+            }).catch(err => {
                 mongoose.disconnect();
                 reject(err);
             });
+
+
+
+
+
     });
 };
 
