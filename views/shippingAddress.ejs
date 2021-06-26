@@ -1,0 +1,69 @@
+<%- include('parts/header') %>
+    <%- include('parts/navbar') %>
+        <div class="container">
+            <form action="/confirmaddress" method="post">
+                <input type="hidden" name="id" value="<%= address.id %>"> Full Name:
+                <input type="text" class="form-control" name="fullname">
+
+                <% let fullNameError = validationErrors.find(err => err.param === 'fullname') %>
+                    <% if (fullNameError) { %>
+                        <p class="alert alert-danger">
+                            <% fullNameError.msg %>
+                        </p>
+                        <% } %>
+                            Country:
+                            <input type="text" class="form-control" name="country">
+                            <% let countryError = validationErrors.find(err => err.param === 'country') %>
+                                <% if (countryError) { %>
+                                    <p class="alert alert-danger">
+                                        <%= countryError.msg %>
+                                    </p>
+                                    <% } %>
+                                        State:
+                                        <input type="text" class="form-control" name="state">
+                                        <% let stateError = validationErrors.find(err => err.param === 'state') %>
+                                            <% if (stateError) { %>
+                                                <p class="alert alert-danger">
+                                                    <%= stateError.msg %>
+                                                </p>
+                                                <% } %>
+                                                    City:
+                                                    <input type="text" class="form-control" name="city">
+                                                    <% let cityError = validationErrors.find(err => err.param === 'city') %>
+                                                        <% if (cityError) { %>
+                                                            <p class="alert alert-danger">
+                                                                <%= cityError.msg %>
+                                                            </p>
+                                                            <% } %>
+                                                                Address Line 1:
+                                                                <input type="text" class="form-control" name="address1">
+                                                                <% let addressError = validationErrors.find(err => err.param === 'address1') %>
+                                                                    <% if (addressError) { %>
+                                                                        <p class="alert alert-danger">
+                                                                            <%= addressError.msg %>
+
+                                                                        </p>
+                                                                        <% } %>
+                                                                            Address Line 2 (Optional)
+                                                                            <input type="text" class="form-control" name="address2"> Zip Code:
+                                                                            <input type="text" class="form-control" name="zip">
+                                                                            <% let zipError = validationErrors.find(err => err.param === 'zip') %>
+                                                                                <% if (zipError) { %>
+                                                                                    <p class="alert alert-danger">
+                                                                                        <%= zipError.msg %>
+                                                                                    </p>
+                                                                                    <% } %>
+                                                                                        Phone No:
+                                                                                        <input type="text" class="form-control" name="phone">
+                                                                                        <% let phoneError = validationErrors.find(err => err.param === 'phone') %>
+                                                                                            <% if (phoneError) { %>
+                                                                                                <p class="alert alert-danger">
+                                                                                                    <%= phoneError.msg %>
+                                                                                                </p>
+                                                                                                <% } %>
+                                                                                                    <input type="submit" value="Confirm your Address" style="background-color:#FFDE71;width:100%;border-radius: 8px;">
+            </form>
+
+        </div>
+
+        <%- include('parts/footer') %>

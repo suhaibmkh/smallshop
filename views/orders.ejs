@@ -11,43 +11,44 @@
 
         <% for (let i = 0; i < items.length; i++) { %>
             <div class="container">
+
                 <div class="card mb-3 " style="max-width: 540px;background-color:#F2FCFF; ">
-                    <div class="row no-gutters ">
-                        <div class="col-md-4 ">
+                    <form action="/pay" method="POST">
+                        <input type="hidden" name="id" value="<%= items[i]._id%>">
+                        <div class="row no-gutters ">
 
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h3>
-                                    Order No:
-                                    <%= items[i].timestamp%>
-                                </h3>
-                                <h5 class="card-title">
-                                    <% for (let j = 0; j < items[i].orderlist.length; j++){%>
+                            <div class="col-md-4 ">
 
-                                        <p>
-
-                                            <a href="/product/<%= items[i].orderlist[j].id %>">
-                                                <%= items[i].orderlist[j].name%>
-                                            </a>
-                                        </p>
-                                        <%}%>
-
-                                </h5>
-
-
-
-
-                                <p>
-                                    <%= items[i].status %>
-                                </p>
-
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h3>
+                                        Order No:
+                                        <%= items[i].timestamp%>
+                                    </h3>
+                                    <h5 class="card-title">
+                                        <% for (let j = 0; j < items[i].orderlist.length; j++){%>
+                                            <p>
+                                                <a href="/product/<%= items[i].orderlist[j].id %>">
+                                                    <%= items[i].orderlist[j].name%>
+                                                </a>
+                                            </p>
+                                            <%}%>
+                                    </h5>
+                                    <p>
+                                        <%= items[i].status %>
+                                    </p>
+                                </div>
 
                             </div>
 
                         </div>
-                    </div>
+                        <% if( items[i].pay){ %>
+                            <input type="submit" value="Pay" style="background-color:#FFDE71;width:100%;border-radius: 8px;">
+                            <%}%>
+                    </form>
                 </div>
+
             </div>
             <% } %>
 

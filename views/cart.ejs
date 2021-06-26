@@ -6,11 +6,13 @@
                 <% } else { %>
                     <div class="card mb-3" style="max-width: 540px;background-color:#F0F0F0;">
                         <form action="/orders" method="POST" class="add-to-cart-form">
+
                             <% for (let i = 0; i < items.length; i++) { %>
                                 <input type="hidden" name="test<%=i%>" value=<%=items[i].amount%>>
                                 <input type="hidden" name="test<%=i%>5" value=<%=items[i].name%>>
-
+                                <input type="hidden" name="test<%=i%>15" value=<%=items[i].price%>>
                                 <input type="hidden" name="test<%=i%>10" value="<%=items[i].productId%>">
+                                <input type="hidden" name="test<%=i%>20" value=<%=items[i].descrption%>>
                                 <%}%>
                                     <input type="hidden" name="id" value=<%=items[0].userId%>>
                                     <input type="submit" value="Place your order" style="background-color:#FFDE71;width:100%;border-radius: 8px;">
@@ -79,7 +81,7 @@
                                             <div class="  row ">
                                                 <div class="col-10">
                                                     <p>Items(
-                                                        <%=items.length%>)
+                                                        <%=items.length%>):
                                                 </div>
                                                 <div class="col-2">
                                                     <%=total%>$
@@ -89,7 +91,7 @@
                                                     <p>Shipping:</p>
                                                 </div>
                                                 <div class="col-2">
-                                                    0$
+                                                    <%=items.length*3%>$
                                                 </div>
 
                                                 <div class="col-10">
@@ -99,37 +101,88 @@
                                                     <%=Math.round(total*0.05)%>$
                                                 </div>
                                                 <div class="col-10">
-                                                    <p>Total:</p>
+                                                    <h5>Total:</h5>
                                                 </div>
                                                 <div class="col-2">
-                                                    <%=total*0.05+total%>$
+                                                    <%=total*0.05+total+ items.length*3%>$
                                                 </div>
 
                                             </div>
 
                                         </div>
-                                        Ship to:
+                                        <h4>Ship to:</h4>
                                         <div class="card mb-3" style="max-width: 540px;background-color:#F0F0F0;">
                                             <div class="  row ">
                                                 <div class="col-10">
                                                     <p>
-                                                        Email:
-                                                        <%= items[0].userId %>
+                                                        Name:
+                                                        <%= addresses[0].fullname %>
                                                     </p>
                                                     <p>
-                                                        Adrress:
-                                                        <%= address%>
+                                                        Email:
+                                                        <%= addresses[0].userId %>
+                                                    </p>
+                                                    <p>
+                                                        Country:
+                                                        <%= addresses[0].country %>
+                                                    </p>
+                                                    <p>
+                                                        State:
+                                                        <%= addresses[0].state %>
+                                                    </p>
+                                                    <p>
+                                                        ZIP Code:
+                                                        <%= addresses[0].zip %>
+                                                    </p>
+                                                    <p>
+                                                        City:
+                                                        <%= addresses[0].city %>
+                                                    </p>
+                                                    <p>
+                                                        Adress:
+                                                        <%= addresses[0].address1 %>
+                                                    </p>
+                                                    <p>
+                                                        <%= addresses[0].address2 %>
                                                     </p>
                                                     <p>
                                                         Phone:
-                                                        <%=phone%>
+                                                        <%= addresses[0].phone %>
                                                     </p>
                                                 </div>
-                                                <div class="col-2">
-                                                    <a hred="#">></a>
+                                                <div class="row">
+                                                    <div class="col-10">
+
+                                                    </div>
+                                                    <div class="col-2"></div>
+                                                    <form action="/shippingaddress" method="POST">
+                                                        <input type="submit" value=">">
+                                                        <input type="hidden" name="id" value="<%= addresses[0]._id %>">
+                                                        <input type="hidden" name="fullname" value="<%= addresses[0].fullname %>">
+                                                        <input type="hidden" name="country" value="<%= addresses[0].country %>">
+                                                        <input type="hidden" name="address1" value="<%= addresses[0].address1 %>">
+                                                        <input type="hidden" name="address2" value="<%= addresses[0].address2 %>">
+                                                        <input type="hidden" name="state" value="<%= addresses[0].state %>">
+                                                        <input type="hidden" name="city" value="<%= addresses[0].city %>">
+                                                        <input type="hidden" name="zip" value="<%= addresses[0].zip %>">
+                                                        <input type="hidden" name="phone" value="<%= addresses[0].phone %>">
+                                                    </form>
+
                                                 </div>
                                             </div>
+
                                         </div>
-                                        <%}%>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-10">
+                                                Delivery instructions (optional)
+                                            </div>
+                                            <div class="col-2">
+                                                <a hred="#">></a>
+                                            </div>
+                                        </div>
+
         </div>
-        <%- include('parts/footer') %>
+        <%}%>
+            </div>
+            <%- include('parts/footer') %>
