@@ -1,49 +1,50 @@
+<script src="/js/jquery.min.js">
+</script>
+<script src="/js/popper.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script>
+    function myFunction(id) {
+        let x = document.getElementById(id);
+        let x1 = document.getElementById(id + "+1");
+        console.log(id + "+1")
+        x.value = Number(x.value) + 1;
+        x.innerHTML = x.value;
+        x1.value = x.value;
+        console.log(x1.value);
+    }
 
+    function myFunction1(id) {
+        let x = document.getElementById(id);
+        let x1 = document.getElementById(id + "+1");
+        if (Number(x.value) > 0) {
+            x.value = Number(x.value) - 1;
 
-    <script src="/js/jquery.min.js"></script>
-    <script src="/js/popper.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-    <script>
-function myFunction(id) {
-let x=document.getElementById(id);
-let x1=document.getElementById(id+"+1");
-console.log(id+"+1")
-  x.value =Number(x.value)+1;
-  x.innerHTML=x.value;
-  x1.value=x.value; 
-console.log(x1.value);
-}
-function myFunction1(id) {
-let x=document.getElementById(id);
-let x1=document.getElementById(id+"+1");
-if(Number(x.value)>0){
-  x.value =Number(x.value)-1;
-  
-  x.innerHTML=x.value;
-  x1.value=x.value;
- 
-}
-}
+            x.innerHTML = x.value;
+            x1.value = x.value;
+
+        }
+    }
 </script>
 
 
 <!-- Footer -->
 <footer class="page-footer font-small blue">
-<div class="row">
-<div class="col col-md-12">
+    <div class="row">
+        <div class="col col-md-12">
 
-  <!-- Copyright -->
-  <div class="footer-copyright navbar navbar-custom1 text-center py-3">Copyright 2021 Chainary
+            <!-- Copyright -->
+            <div class="footer-copyright navbar navbar-custom1 text-center py-3">Copyright 2021 Chainary
 
- <div class="col col-md-4"><a href="https;//www.google.com"> contact us</a>
- </div>
-<div class="col col-md-4"><a href="https;//www.google.com">Privacy Policy</a>
-</div>
-</div>
-  
-           
- 
-  </div>
-</div>
-</body>
-</html>
+                <div class="col col-md-4"><a href="https;//www.google.com"> contact us</a>
+                </div>
+                <div class="col col-md-4"><a href="https;//www.google.com">Privacy Policy</a>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+    </body>
+
+    </html>
