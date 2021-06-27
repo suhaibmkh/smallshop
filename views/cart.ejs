@@ -140,11 +140,11 @@
                                                             <%for (image of product.image){ %>
                                                                 <% if (i===0){%>
                                                                     <div class="carousel-item active">
-                                                                        <img src="/<%= product.image[i].filename%>" class="card-img-top" style="height: 200px;text-align: center;" alt="<%= product.image[i].originalname%>">
+                                                                        <img src="/<%= product.image[i].filename%>" class="card-img-top" style="height: 200px;" alt="<%= product.image[i].originalname%>">
                                                                     </div>
                                                                     <%}else{%>
                                                                         <div class="carousel-item">
-                                                                            <img src="/<%= product.image[i].filename%>" class="card-img-top" style="height: 200px;text-align: center;" alt="<%= product.image[i].originalname%>">
+                                                                            <img src="/<%= product.image[i].filename%>" class="card-img-top" style="height: 200px;" alt="<%= product.image[i].originalname%>">
                                                                         </div>
                                                                         <%}%>
                                                                             <%i++%>
