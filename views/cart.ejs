@@ -53,7 +53,7 @@
                                             <form method="POST" >
                                                 <br>
                                                 <input type="hidden" name="cartId" value="<%= items[i]._id%>">
-                                                <input type="submit" style="border-radius: 6px;width:100%;background-color:white;color:black;" value="Delete" onsubmit="return setAction(this)">
+                                                <input type="submit" style="border-radius: 6px;width:100%;background-color:white;color:black;" value="Delete" formaction="/cart/delete">
                                             </form>
                                         </div>
                                     </div>
