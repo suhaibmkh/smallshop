@@ -3,6 +3,16 @@
 <script src="/js/popper.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
 <script>
+functionsetAction(form) {
+  
+  var r = confirm("Are you sure to remove the item from your cart");
+  if (r == true) {
+    form.action = "/cart/delete";
+  } else {
+    form.action = "/cart";
+  }
+ 
+}
     function myFunction(id) {
         let x = document.getElementById(id);
         let x1 = document.getElementById(id + "+1");
