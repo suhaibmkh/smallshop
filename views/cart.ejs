@@ -50,10 +50,10 @@
                                             </form>
                                         </div>
                                         <div class="col-3">
-                                            <form onsubmit="return setAction(this)" >
+                                            <form method="POST" >
                                                 <br>
                                                 <input type="hidden" name="cartId" value="<%= items[i]._id%>">
-                                                <input type="submit" style="border-radius: 6px;width:100%;background-color:white;color:black;" value="Delete" >
+                                                <input type="submit" style="border-radius: 6px;width:100%;background-color:white;color:black;" value="Delete" formaction="/cart/delete">
                                             </form>
                                         </div>
                                     </div>
