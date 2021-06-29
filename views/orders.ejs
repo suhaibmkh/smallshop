@@ -58,7 +58,23 @@
     
                             <%}%>
                     </form>
-                   
+                   <form method="POST" action="/orders/cancel">
+                    <input type="hidden" name="id" value="<%= items[i]._id%>">
+                    <div class="row">
+                            <div class="col-3">
+                                 <input type="submit" value="Cancel Order" style="background-color:#FFDE71;width:100%;border-radius: 8px;" > 
+                            </div>
+                            <div class="col-3">
+                               
+                            </div>
+                            <div class="col-3">
+                                
+                            </div>
+                            <div class="col-3">
+                              
+                            </div>
+                        </div>
+                   </form>
                 </div>
 
             </div>
