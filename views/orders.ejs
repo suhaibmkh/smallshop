@@ -13,12 +13,10 @@
             <div class="container">
 
                 <div class="card mb-3 " style="max-width: 540px;background-color:#F2FCFF; ">
-                    <form action="/pay" method="POST">
+                   <form  method="POST">
                         <input type="hidden" name="id" value="<%= items[i]._id%>">
                         <div class="row no-gutters ">
-
                             <div class="col-md-4 ">
-
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body">
@@ -39,12 +37,29 @@
                                         <%= items[i].status %>
                                     </p>
                                 </div>
-
                             </div>
-
                         </div>
                         <% if( items[i].pay){ %>
-                            <input type="submit" value="Pay" style="background-color:#FFDE71;width:100%;border-radius: 8px;">
+                       
+                         <div class="row">
+                            <div class="col-3">
+                                <input type="submit" value="Pay" style="background-color:#FFDE71;width:100%;border-radius: 8px;" formaction="/pay">
+                            </div>
+                            <div class="col-3">
+                               
+                            </div>
+                            <div class="col-3">
+                                
+                            </div>
+                            <div class="col-3">
+                                <input type="submit" value="Delet" style="background-color:#FFDE71;width:100%;border-radius: 8px;" formaction="/orders/delete">
+                            </div>
+                            
+                        
+                        </div>
+                        
+                            
+                             
                             <%}%>
                     </form>
                 </div>
