@@ -8,7 +8,7 @@ const authGuard = require("./guards/auth.guard");
 router.get("/orders", authGuard.isAuth, orderController.getOrder);
 
 router.post(
-    "/orders/orders",
+    "/orders",
     authGuard.isAuth,
     bodyParser.urlencoded({ extended: true }),
 
@@ -17,7 +17,7 @@ router.post(
 
 
 router.post(
-    "/cancel",
+    "/orders/cancel",
     authGuard.isAuth,
     bodyParser.urlencoded({ extended: true }),
     orderController.postCancel
