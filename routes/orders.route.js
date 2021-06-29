@@ -5,10 +5,10 @@ const check = require("express-validator").check;
 const orderController = require("../controllers/order.constroller");
 const authGuard = require("./guards/auth.guard");
 
-router.get("/", authGuard.isAuth, orderController.getOrder);
+router.get("/orders", authGuard.isAuth, orderController.getOrder);
 
 router.post(
-    "/",
+    "/orders",
     authGuard.isAuth,
     bodyParser.urlencoded({ extended: true }),
 
@@ -17,7 +17,7 @@ router.post(
 
 
 router.post(
-    "/cancel",
+    "/orders/cancel",
     authGuard.isAuth,
     bodyParser.urlencoded({ extended: true }),
     orderController.postCancel
