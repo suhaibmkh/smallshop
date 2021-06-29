@@ -88,7 +88,7 @@ exports.getOrdersByUser = userId => {
         mongoose
             .connect(DB_URL)
             .then(() => {
-                return OrderL.find({ userId: userId }, {}, { sort: { timestamp: 1 } });
+                return OrderL.find({ userId: userId }, {}, { sort: {pay:-1, timestamp: 1 } });
             })
             .then(items => {
 
