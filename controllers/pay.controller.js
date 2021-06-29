@@ -8,7 +8,7 @@ paypal.configure({
 });
 
 exports.postPay = (req, res, next) => {
-
+console.log("route is Ok")
     address.getAddressDetails(req.session.userId)
         .then((shipp) => {
 
