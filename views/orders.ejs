@@ -52,13 +52,14 @@
                                 
                             </div>
                             <div class="col-3">
-                                <input type="submit" value="Delete" style="background-color:#FFDE71;width:100%;border-radius: 8px;" formaction="/orders/cancel"> 
+                                <input type="submit" value="Delete" style="background-color:#FFDE71;width:100%;border-radius: 8px;" formaction="/cancel"> 
                             </div>
                         </div>
     
                             <%}%>
                     </form>
                     <form action="/cancel" method="POST">
+                       <input type="hidden" name="id" value="<%= items[i]._id%>">
                          <input type="submit" value="Delete" style="background-color:#FFDE71;width:100%;border-radius: 8px;"> 
                     </form>
                 </div>
