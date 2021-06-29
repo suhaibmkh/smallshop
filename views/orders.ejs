@@ -13,7 +13,7 @@
             <div class="container">
 
                 <div class="card mb-3 " style="max-width: 540px;background-color:#F2FCFF; ">
-                   <form  method="POST"  >
+                   <form  method="POST">
                         <input type="hidden" name="id" value="<%= items[i]._id%>">
                         <div class="row no-gutters ">
                             <div class="col-md-4 ">
@@ -52,17 +52,10 @@
                                 
                             </div>
                             <div class="col-3">
-                           
-                              <input type="submit" value="Delete" style="background-color:#FFDE71;width:100%;border-radius: 8px;" formaction="/orders/cancel"  >
-                           
-                               
+                                <input type="submit" value="Delete" style="background-color:#FFDE71;width:100%;border-radius: 8px;" formaction="/orders/cancel"> 
                             </div>
-                            
-                        
                         </div>
-                        
-                            
-                             
+    
                             <%}%>
                     </form>
                 </div>
