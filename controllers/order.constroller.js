@@ -53,7 +53,7 @@ exports.postOrder = (req, res, next) => {
 exports.postCancel = (req, res, next) => {
     console.log("route is Ok")
     orderModel
-        .cancelOrder(req.body.orderId)
+        .cancelOrder(req.body.id)
         .then(() => res.redirect("/orders"))
         .catch(err => {
             res.redirect("/error");
