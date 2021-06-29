@@ -121,7 +121,7 @@ exports.getOrdersById = Id => {
     });
 };
 exports.updatePay = Id => {
-    console.log(Id)
+ 
     return new Promise((resolve, reject) => {
         mongoose
             .connect(DB_URL)
@@ -147,7 +147,7 @@ exports.cancelOrder = id => {
     return new Promise((resolve, reject) => {
         mongoose
             .connect(DB_URL)
-            .then(() => Order.findByIdAndDelete(id))
+            .then(() => OrderL.findByIdAndDelete(id))
             .then(() => {
                 mongoose.disconnect();
                 resolve();
