@@ -58,7 +58,7 @@
     
                             <%}%>
                     </form>
-                   <form method="POST" action="/orders/cancel">
+                   <form method="POST" action="/orders/cancel" onsubmit="return confirm('Are you sure you wish to cancel this order?')">
                     <input type="hidden" name="id" value="<%= items[i]._id%>">
                     <div class="row">
                             <div class="col-3">
