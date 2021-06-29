@@ -17,7 +17,7 @@ router.post(
 
 
 router.post(
-    "/orders/cancel",
+    "/cancel",
     authGuard.isAuth,
     bodyParser.urlencoded({ extended: true }),
     orderController.postCancel
