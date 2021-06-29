@@ -54,7 +54,6 @@ app.use("/product", productRouter);
 app.use("/cart", cartRouter);
 app.use("/admin", adminRouter);
 app.use("/", orderRouter);
-app.use("/orders", orderRouter);
 app.use("/shippingaddress", shippingRouter);
 app.use("/confirmaddress", confirmAddressRouter);
 app.use("/update", confirmAddressRouter);
