@@ -16,14 +16,35 @@ router.post(
     .not()
     .isEmpty()
     .withMessage("username is required"),
-    check("address")
+    check("fullname")
     .not()
     .isEmpty()
-    .withMessage("Address is required"),
+    .withMessage("Full Name is required"),
+
+    check("country")
+    .not()
+    .isEmpty()
+    .withMessage("Country is required"),
+    check("city")
+    .not()
+    .isEmpty()
+    .withMessage("City is required"),
+    check("state")
+    .not()
+    .isEmpty()
+    .withMessage("State is required"),
+    check("address1")
+    .not()
+    .isEmpty()
+    .withMessage("Line 1 is required"),
     check("phone")
     .not()
     .isEmpty()
-    .withMessage("phone is required"),
+    .withMessage("Phone is required"),
+    check("zip")
+    .not()
+    .isEmpty()
+    .withMessage("ZIP Code is required"),
     check("email")
     .not()
     .isEmpty()

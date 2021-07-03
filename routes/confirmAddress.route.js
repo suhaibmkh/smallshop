@@ -12,8 +12,14 @@ router.post('/', authGuard.isAuth,
     check("city").not().isEmpty().withMessage("City is required"),
     check("address1").not().isEmpty().withMessage("Address is required"),
     check("phone").not().isEmpty().withMessage("Phone is required"),
-    check("zip").not().isEmpty().withMessage("ZIP is required"),
+    check("zip").not().isEmpty().withMessage("ZIP Code is required"),
     confirmAddressController.postConfirmAddress);
+router.post('/confirminstruction', authGuard.isAuth,
+    bodyParser.urlencoded({ extended: true }),
 
+    confirmAddressController.postConfirminstruction);
+router.get('/confirminstruction', authGuard.isAuth,
+
+    confirmAddressController.getConfirminstruction);
 
 module.exports = router;

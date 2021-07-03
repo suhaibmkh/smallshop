@@ -48,9 +48,15 @@ router.post(
 );
 
 router.get("/orders", adminGuard, adminController.getOrders);
-
+router.post("/orders/oneorder", adminGuard, bodyParser.urlencoded({ extended: true }), adminController.getOneOrder);
 router.post(
     "/orders",
+    adminGuard,
+    bodyParser.urlencoded({ extended: true }),
+    adminController.postOrders
+);
+router.post(
+    "/send",
     adminGuard,
     bodyParser.urlencoded({ extended: true }),
     adminController.postOrders
