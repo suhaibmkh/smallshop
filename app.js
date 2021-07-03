@@ -47,7 +47,6 @@ app.use(
 
 app.set("view engine", "ejs");
 app.set("views", "views");
-
 app.use("/", homeRouter);
 app.use("/", authRouter);
 app.use("/product", productRouter);
