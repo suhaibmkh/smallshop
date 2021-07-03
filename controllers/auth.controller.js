@@ -11,10 +11,12 @@ exports.getSignup = (req, res, next) => {
     });
 };
 
+
 exports.postSignup = (req, res, next) => {
+    console.log(req.body)
     if (validationResult(req).isEmpty()) {
         authModel
-            .createNewUser(req.body.username, req.body.email, req.body.password, req.body.address, req.body.phone)
+            .createNewUser(req.body.username, req.body.email, req.body.password, req.body.fullname, req.body.country, req.body.state, req.body.city, req.body.address1, req.body.address2, req.body.zip, req.body.phone[0], req.body.instruction)
             .then(() => res.redirect("/login"))
             .catch(err => {
                 req.flash("authError", err);
@@ -37,6 +39,7 @@ exports.getLogin = (req, res, next) => {
 };
 
 exports.postLogin = (req, res, next) => {
+
     if (validationResult(req).isEmpty()) {
         authModel
             .login(req.body.email, req.body.password)

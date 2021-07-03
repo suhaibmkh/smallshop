@@ -1,11 +1,12 @@
 const cartModel = require("../models/cart.model");
 const confirmAdressModel = require("../models/cofirmAddress.model");
+const address = require("../models/auth.model")
 const validationResult = require("express-validator").validationResult;
 
 exports.getCart = (req, res, next) => {
-    confirmAdressModel.getAddressDetails(req.session.userId)
+    address.getUserById(req.session.userId)
         .then(addresses => {
-
+            console.log(addresses)
             cartModel
                 .getItemsByUser(req.session.userId)
                 .then((items) => {
@@ -69,6 +70,7 @@ exports.postSave = (req, res, next) => {
 };
 
 exports.postDelete = (req, res, next) => {
+
     cartModel
         .deleteItem(req.body.cartId)
         .then(() => res.redirect("/cart"))

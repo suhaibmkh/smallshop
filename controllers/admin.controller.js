@@ -44,10 +44,25 @@ exports.getOrders = (req, res, next) => {
         })
         .catch(err => res.redirect("/error"));
 };
+exports.getOneOrder = (req, res, next) => {
+    ordersModel
+        .getOrdersById(req.body.orderid)
+        .then(items => {
+            console.log(items)
+            res.render("orderbyid", {
+                pageTitle: "order details",
+                isUser: true,
+                isAdmin: true,
+                items: items,
+
+            });
+        })
+        .catch(err => res.redirect("/error"));
+};
 
 exports.postOrders = (req, res, next) => {
     ordersModel
-        .editOrder(req.body.orderId, req.body.status)
+        .editOrder(req.body.orderId, req.body.status, req.body.track)
         .then(() => res.redirect("/admin/orders"))
         .catch(err => {
             res.redirect("/error");

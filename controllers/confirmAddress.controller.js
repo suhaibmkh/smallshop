@@ -1,4 +1,4 @@
-const confirmAddressModel = require("../models/cofirmAddress.model");
+const confirmAddressModel = require("../models/auth.model");
 const validationResult = require("express-validator").validationResult;
 
 exports.postConfirmAddress1 = (req, res, next) => {
@@ -29,8 +29,17 @@ exports.postConfirmAddress1 = (req, res, next) => {
         res.redirect("/shippingaddress");
     }
 };
+exports.getConfirminstruction = (req, res, next) => {
+
+    res.render("instruction", {
+        isUser: req.session.userId,
+        isAdmin: req.session.isAdmin,
+
+        pageTitle: "Instructions"
+    })
+}
 exports.postConfirmAddress = (req, res, next) => {
-    console.log(req.body)
+
     if (validationResult(req).isEmpty()) {
 
         confirmAddressModel
@@ -47,6 +56,24 @@ exports.postConfirmAddress = (req, res, next) => {
                 userId: req.session.userId,
                 timestamp: Date.now()
             })
+            .then(() => {
+                res.redirect("/cart");
+            })
+            .catch(err => {
+                res.redirect("/error");
+            });
+    } else {
+        req.flash("validationErrors", validationResult(req).array());
+        res.redirect("/shippingaddress");
+    }
+};
+exports.postConfirminstruction = (req, res, next) => {
+    console.log("req", req.session.userId)
+
+    if (validationResult(req).isEmpty()) {
+
+        confirmAddressModel
+            .updateInstruction(req.body.instruction, req.session.userId)
             .then(() => {
                 res.redirect("/cart");
             })
