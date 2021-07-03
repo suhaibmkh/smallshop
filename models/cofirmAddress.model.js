@@ -13,7 +13,7 @@ const confirmAddressSchema = mongoose.Schema({
     state: String,
     zip: String,
     timestamp: Number,
-
+    instructions: String,
 });
 
 const Address = mongoose.model("address", confirmAddressSchema);
@@ -45,6 +45,27 @@ exports.updateAddress = data => {
 
             })
             .then(() => {
+                mongoose.disconnect();
+                resolve();
+            })
+            .catch(err => {
+                mongoose.disconnect();
+                reject(err);
+            });
+    });
+}
+exports.updateInstruction = data => {
+    return new Promise((resolve, reject) => {
+        mongoose
+            .connect(DB_URL, { useFindAndModify: false })
+            .then(() => {
+                console.log("1", data)
+
+                return Address.findOneAndUpdate({ userId: data.id1 }, { instructions: data.instruction })
+
+            })
+            .then(() => {
+                console.log()
                 mongoose.disconnect();
                 resolve();
             })

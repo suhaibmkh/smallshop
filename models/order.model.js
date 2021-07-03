@@ -11,6 +11,7 @@ const orderSchema = mongoose.Schema({
     userId: String,
     productId: String,
     timestamp: Number,
+
     address: String,
     description: String,
     status: {
@@ -33,7 +34,8 @@ const orderListSchema = mongoose.Schema({
     pay: {
         type: Boolean,
         default: true
-    }
+    },
+    trackno: String
 
 });
 
@@ -55,6 +57,7 @@ exports.addNewOrder = data => {
         m2 = data["test" + j + "5"]
         p = data["test" + j + "15"]
         d = data["test" + j + "20"]
+
         orderList1.push({ amount: m, id: m1, name: m2, price: p, description: d })
     }
 
@@ -88,7 +91,7 @@ exports.getOrdersByUser = userId => {
         mongoose
             .connect(DB_URL)
             .then(() => {
-                return OrderL.find({ userId: userId }, {}, { sort: {pay:-1, timestamp: 1 } });
+                return OrderL.find({ userId: userId }, {}, { sort: { pay: -1, timestamp: 1 } });
             })
             .then(items => {
 
@@ -107,7 +110,7 @@ exports.getOrdersById = Id => {
             .connect(DB_URL)
             .then(() => {
                 console.log(Id)
-                return OrderL.find({ _id: Id }, {}, { sort: { timestamp: 1 } });
+                return OrderL.find({ _id: Id }, {}, { sort: { pay: -1, timestamp: 1 } });
             })
             .then(items => {
 
@@ -121,7 +124,7 @@ exports.getOrdersById = Id => {
     });
 };
 exports.updatePay = Id => {
- 
+
     return new Promise((resolve, reject) => {
         mongoose
             .connect(DB_URL)
@@ -164,7 +167,7 @@ exports.getAllOrders = () => {
         mongoose
             .connect(DB_URL)
             .then(() => {
-                return Order.find({}, {}, { sort: { timestamp: 1 } });
+                return OrderL.find({}, {}, { sort: { pay: -1, timestamp: 1 } });
             })
             .then(items => {
                 mongoose.disconnect();
@@ -177,12 +180,12 @@ exports.getAllOrders = () => {
     });
 };
 
-exports.editOrder = (id, newStatus) => {
+exports.editOrder = (id, newStatus, track) => {
     return new Promise((resolve, reject) => {
         mongoose
             .connect(DB_URL)
             .then(() => {
-                return Order.updateOne({ _id: id }, { status: newStatus });
+                return OrderL.updateOne({ _id: id }, { status: newStatus, trackno: track });
             })
             .then(items => {
                 mongoose.disconnect();
