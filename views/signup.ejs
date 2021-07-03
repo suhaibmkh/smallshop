@@ -32,21 +32,58 @@
                                                                 <%= passwordConfirmError.msg %>
                                                             </p>
                                                             <% } %>
-                                                                <input type="text" class="form-control" name="phone" placeholder="Mobil Number">
-                                                                <% let phoneError = validationErrors.find(err => err.param === 'username') %>
-                                                                    <% if (phoneError) { %>
+                                                                <input type="text" class="form-control" name="fullname" placeholder="Full Name">
+                                                                <% let fullnameError = validationErrors.find(err => err.param === 'fullname') %>
+                                                                    <% if (fullnameError) { %>
                                                                         <p class="alert alert-danger">
-                                                                            <%= phoneError.msg %>
+                                                                            <%= fullnameError.msg %>
                                                                         </p>
                                                                         <% } %>
-                                                                            <input type="text" class="form-control" name="address" placeholder="Your Address">
-                                                                            <% let addressError = validationErrors.find(err => err.param === 'username') %>
-                                                                                <% if (addressError) { %>
+                                                                            <input type="text" class="form-control" name="country" placeholder="country">
+                                                                            <% let countryError = validationErrors.find(err => err.param === 'country') %>
+                                                                                <% if (countryError) { %>
                                                                                     <p class="alert alert-danger">
-                                                                                        <%= addressError.msg %>
+                                                                                        <%= countryError.msg %>
                                                                                     </p>
                                                                                     <% } %>
-                                                                                        <input type="submit" value="Create Account" class="btn btn-primary">
+                                                                                        <input type="text" class="form-control" name="state" placeholder="State">
+                                                                                        <% let stateError = validationErrors.find(err => err.param === 'state') %>
+                                                                                            <% if (stateError) { %>
+                                                                                                <p class="alert alert-danger">
+                                                                                                    <%= stateError.msg %>
+                                                                                                </p>
+                                                                                                <% } %>
+                                                                                                    <input type="text" class="form-control" name="city" placeholder="City">
+                                                                                                    <% let cityError = validationErrors.find(err => err.param === 'city') %>
+                                                                                                        <% if (stateError) { %>
+                                                                                                            <p class="alert alert-danger">
+                                                                                                                <%= cityError.msg %>
+                                                                                                            </p>
+                                                                                                            <% } %>
+                                                                                                                <input type="text" class="form-control" name="address1" placeholder="Line 1">
+                                                                                                                <% let address1Error = validationErrors.find(err => err.param === 'address1') %>
+                                                                                                                    <% if (address1Error) { %>
+                                                                                                                        <p class="alert alert-danger">
+                                                                                                                            <%= address1Error.msg %>
+                                                                                                                        </p>
+                                                                                                                        <% } %>
+                                                                                                                            <input type="text" class="form-control" name="address2" placeholder="Line 2 (Optional)">
+                                                                                                                            <input type="text" class="form-control" name="zip" placeholder="ZIP Code">
+                                                                                                                            <% let zipError = validationErrors.find(err => err.param === 'zip') %>
+                                                                                                                                <% if (zipError) { %>
+                                                                                                                                    <p class="alert alert-danger">
+                                                                                                                                        <%= zipError.msg %>
+                                                                                                                                    </p>
+                                                                                                                                    <% } %>
+                                                                                                                                        <input type="text" class="form-control" name="phone" placeholder="Phone">
+                                                                                                                                        <% let phoneError = validationErrors.find(err => err.param === 'phone') %>
+                                                                                                                                            <% if (phoneError) { %>
+                                                                                                                                                <p class="alert alert-danger">
+                                                                                                                                                    <%= phoneError.msg %>
+                                                                                                                                                </p>
+                                                                                                                                                <% } %>
+                                                                                                                                                    <input type="text" class="form-control" name="phone" placeholder="Delivery Instructions (Optional)">
+                                                                                                                                                    <input type="submit" value="Create Account" class="btn btn-primary">
 
             </form>
             <% if(authError) { %>

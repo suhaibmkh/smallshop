@@ -1,0 +1,92 @@
+<%- include('parts/header') %>
+    <%- include('parts/navbar') %>
+
+
+        <div class="container">
+
+            <% if(items.length === 0) { %>
+                <p class="alert alert-danger">There is no items</p>
+                <% } else { %>
+                    <h5 style="background-color:  #8ED1E5;">Orders</h5>
+        </div>
+        <% for (let i = 0; i < items.length; i++) { %>
+            <div class="container">
+                <div class="card mb-3 " style="max-width: 540px;background-color:#F2FCFF; ">
+
+                    <input type="hidden" name="id" value="<%= items[i]._id%>">
+                    <div class="row no-gutters ">
+                        <div class="col-md-4">
+
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h3>
+                                    Order No:
+                                    <%= items[i].timestamp%>
+                                </h3>
+                                <h5 class="card-title">
+
+                                    <% for (let j = 0; j < items[i].orderlist.length; j++){%>
+
+                                        <% if (items[i].orderlist[j].name){ %>
+
+
+                                            <div class="row no-gutters ">
+                                                <div class="col-md-4">
+                                                    <img src="/<%= items[i].orderlist[j].image %>" style="width: 95%;height:95%; " alt="<%=items[i].name %>">
+                                                </div>
+                                                <div class="col-md-8">
+
+                                                    <p>
+                                                        <a href="/product/<%= items[i].orderlist[j].id %>">
+                                                            <%= items[i].orderlist[j].name%>
+
+                                                        </a>
+                                                    </p>
+                                                    <p>Qty:
+                                                        <%= items[i].orderlist[j].amount%>
+                                                    </p>
+                                                    <p>Price:
+                                                        <%= items[i].orderlist[j].price%>$</p>
+                                                </div>
+                                            </div>
+                                            <%}%>
+
+                                                <%}%>
+
+
+                                </h5>
+                                <p>Requested By:
+                                    <%= items[i].userId%>
+                                </p>
+                                <p>
+                                    <%= items[i].status %>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <% if (items[i].status === 'pending') { %>
+                        <form style="display: inline-block" method="POST" action="/admin/orders">
+                            <input type="hidden" name="orderId" value="<%= items[i]._id %>">
+                            <input type="hidden" name="status" value="sent">
+                            <input type="text" class="form-control" name="track" placeholder="fill track number">
+                            <input type="submit" value="Send" style="background-color:#FFDE71;width:100%;border-radius: 8px;">
+
+                        </form>
+                        <% } %>
+                            <% if (items[i].status === 'pending' || items[i].status === 'sent') { %>
+                                <form style="display: inline-block" method="POST" action="/admin/orders">
+                                    <input type="hidden" name="orderId" value="<%= items[i]._id %>">
+                                    <input type="hidden" name="status" value="complete">
+                                    <input type="hidden" class="form-control" name="track" value="" placeholder="fill track number">
+                                    <input type="submit" value="Complete" style="background-color:#FFDE71;width:100%;border-radius: 8px;">
+                                </form>
+                                <% } %>
+
+                </div>
+
+            </div>
+            <% } %>
+                <% } %>
+
+                    <%- include('parts/footer') %>

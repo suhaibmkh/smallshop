@@ -8,12 +8,11 @@
                 <% } else { %>
                     <h5 style="background-color:  #8ED1E5;">Orders</h5>
         </div>
-
         <% for (let i = 0; i < items.length; i++) { %>
             <div class="container">
-
                 <div class="card mb-3 " style="max-width: 540px;background-color:#F2FCFF; ">
-                   <form  method="POST">
+
+                    <form method="POST">
                         <input type="hidden" name="id" value="<%= items[i]._id%>">
                         <div class="row no-gutters ">
                             <div class="col-md-4 ">
@@ -36,54 +35,62 @@
                                     <p>
                                         <%= items[i].status %>
                                     </p>
+                                    <%if( items[i].status!=="pendin"){%>
+                                        <p>
+                                            Tracking No:
+                                            <%= items[i].trackno %>
+                                        </p>
+                                        <%}%>
                                 </div>
                             </div>
                         </div>
-                        <% if( items[i].pay){ %>
-                       
-                         <div class="row">
-                            <div class="col-3">
-                                <input type="submit" value="Pay" style="background-color:#FFDE71;width:100%;border-radius: 8px;" formaction="/pay">
-                            </div>
-                            <div class="col-3">
-                               
-                            </div>
-                            <div class="col-3">
-                                
-                            </div>
-                            <div class="col-3">
-                                
-                            </div>
-                        </div>
-    
-                            <%}%>
-                    </form>
-                    
-                   <form method="POST" action="/orders/cancel" onsubmit="return confirm('Are you sure you wish to cancel this order?')">
-                     <% if( items[i].pay){ %>
-                    <input type="hidden" name="id" value="<%= items[i]._id%>">
-                    <div class="row">
-                            <div class="col-3">
-                                 <input type="submit" value="Cancel Order" style="background-color:#FFDE71;width:100%;border-radius: 8px;" > 
-                            </div>
-                            <div class="col-3">
-                               
-                            </div>
-                            <div class="col-3">
-                                
-                            </div>
-                            <div class="col-3">
-                              
-                            </div>
-                        </div>
-                        <%}%>
-                   </form>
-                </div>
 
+                        <%if( items[i].status=="pending"){%>
+                            <% if( items[i].pay){ %>
+
+                                <div class="row">
+                                    <div class="col-3">
+                                        <input type="submit" value="Pay" style="background-color:#FFDE71;width:100%;border-radius: 8px;" formaction="/pay">
+                                    </div>
+                                    <div class="col-3">
+
+                                    </div>
+                                    <div class="col-3">
+
+                                    </div>
+                                    <div class="col-3">
+
+                                    </div>
+                                </div>
+                                <%}%>
+                                    <%}%>
+                    </form>
+                    <%if( items[i].status=="pending"){%>
+
+                        <form method="POST" action="/orders/cancel" onsubmit="return confirm('Are you sure you wish to cancel this order?')">
+                            <% if( items[i].pay){ %>
+                                <input type="hidden" name="id" value="<%= items[i]._id%>">
+                                <div class="row">
+                                    <div class="col-3">
+                                        <input type="submit" value="Cancel Order" style="background-color:#FFDE71;width:100%;border-radius: 8px;">
+
+                                    </div>
+                                    <div class="col-3">
+
+                                    </div>
+                                    <div class="col-3">
+
+                                    </div>
+                                    <div class="col-3">
+
+                                    </div>
+                                </div>
+                                <%}%>
+                        </form>
+                        <%}%>
+                </div>
             </div>
             <% } %>
-
-
                 <% } %>
 
 

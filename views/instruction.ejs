@@ -1,0 +1,10 @@
+<%- include('parts/header') %>
+    <%- include('parts/navbar') %>
+        <form action="/confirmaddress/confirminstruction" method="post">
+            <div class="container">
+                <input type="text" class="form-control" name="instruction" placeholder="Delivery Instructions">
+                <input type="submit" value="Confirm" style="background-color:#FFDE71;width:100%;border-radius: 8px;">
+            </div>
+
+        </form>
+        <%- include('parts/footer') %>
