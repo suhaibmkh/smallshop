@@ -58,7 +58,7 @@ console.log("route is Ok")
                                     "country_code": "US",
                                     "postal_code": "18117-134",
                                     "state": shipp.state,
-                                    "phone": shipp.phone[0]
+                                    "phone": shipp.phone
                                 },
                                 items: item1
 
