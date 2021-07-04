@@ -91,7 +91,7 @@ exports.getOrdersByUser = userId => {
         mongoose
             .connect(DB_URL)
             .then(() => {
-                return OrderL.find({ userId: userId }, {}, { sort: { pay: 1, timestamp: -1 } });
+                return OrderL.find({ userId: userId }, {}, { sort: { status:{"pending","send","complete"}, timestamp: 1 } });
             })
             .then(items => {
 
@@ -110,7 +110,7 @@ exports.getOrdersById = Id => {
             .connect(DB_URL)
             .then(() => {
                 console.log(Id)
-                return OrderL.find({ _id: Id }, {}, { sort: { timestamp: -1 } });
+                return OrderL.find({ _id: Id }, {}, {sort: { status:{"pending","send","complete"}, timestamp: 1 } });
             })
             .then(items => {
 
