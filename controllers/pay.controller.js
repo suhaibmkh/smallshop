@@ -55,7 +55,7 @@ console.log("route is Ok")
                                     "line1": shipp[0].address1,
                                     "line2": shipp[0].address2,
                                     "city": shipp[0].city,
-                                    "country_code": "US",
+                                    "country_code": "BR",
                                     "postal_code": "18117-134",
                                     "state": shipp[0].state,
                                     "phone": shipp[0].phone[0]
