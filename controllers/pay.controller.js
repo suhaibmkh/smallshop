@@ -52,13 +52,13 @@ console.log("route is Ok")
                             item_list: {
                                 "shipping_address": {
                                     "recipient_name": shipp[0].fullname,
-                                    "line1": shipp.address1,
-                                    "line2": shipp.address2,
-                                    "city": shipp.city,
+                                    "line1": shipp[0].address1,
+                                    "line2": shipp[0].address2,
+                                    "city": shipp[0].city,
                                     "country_code": "US",
                                     "postal_code": "18117-134",
-                                    "state": shipp.state,
-                                    "phone": shipp.phone
+                                    "state": shipp[0].state,
+                                    "phone": shipp[0].phone[0]
                                 },
                                 items: item1
 
