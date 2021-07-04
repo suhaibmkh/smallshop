@@ -22,7 +22,7 @@
                                     <h3>
                                         Order No:
                                         <%= items[i].timestamp%>
-                                        <p><%= new date(items[i].timestamp)%></p>
+                                        <p><% new Date(items[i].timestamp)%></p>
                                     </h3>
                                     <h5 class="card-title">
                                         <% for (let j = 0; j < items[i].orderlist.length; j++){%>
