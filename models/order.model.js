@@ -110,7 +110,7 @@ exports.getOrdersById = Id => {
             .connect(DB_URL)
             .then(() => {
                 console.log(Id)
-                return OrderL.find({ _id: Id }, {}, { sort: {, timestamp: -1 } });
+                return OrderL.find({ _id: Id }, {}, { sort: { timestamp: -1 } });
             })
             .then(items => {
 
