@@ -1,5 +1,5 @@
 const paypal = require("paypal-rest-sdk");
-	const address = require("../models/cofirmAddress.model")
+	const address = require("../models/auth.model")
 	const order = require("../models/order.model")
 	paypal.configure({
 	    mode: "sandbox", //sandbox or live
@@ -10,9 +10,10 @@ const paypal = require("paypal-rest-sdk");
 
 	exports.postPay = (req, res, next) => {
 	console.log("route is Ok")
-	    address.getAddressDetails(req.session.userId)
+		
+    address.getUserById(req.session.userId)
 	        .then((shipp) => {
-	
+	console.log(shipp)
 
 	            order.getOrdersById(req.body.id)
 	                .then((orders) => {
