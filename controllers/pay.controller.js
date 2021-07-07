@@ -56,14 +56,14 @@ const paypal = require("paypal-rest-sdk");
 	                        transactions: [{
 	                            item_list: {
 	                                "shipping_address": {
-	                                    "recipient_name": shipp[0].fullname,
-	                                    "line1": shipp[0].address1,
-	                                    "line2": shipp[0].address2,
-	                                    "city": shipp[0].city,
+	                                    "recipient_name": shipp.fullname,
+	                                    "line1": shipp.address1,
+	                                    "line2": shipp.address2,
+	                                    "city": shipp.city,
 	                                    "country_code": "BR",
 	                                    "postal_code": "18117-134",
-	                                    "state": shipp[0].state,
-	                                    "phone": shipp[0].phone
+	                                    "state": shipp.state,
+	                                    "phone": shipp.phone[0]
 	                                },
 	                                items: item1
 	
