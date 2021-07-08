@@ -3,16 +3,16 @@
         <div class="container">
             <form action="/confirmaddress" method="post">
                 <input type="hidden" name="id" value="<%= address.id %>"> Full Name:
-                <input type="text" class="form-control" name="fullname">
+                <input type="text" class="form-control" name="fullname" value="<%= address.fullname %>">
 
-                <% let fullNameError = validationErrors.find(err => err.param === 'fullname') %>
+                <% let fullNameError = validationErrors.find(err => err.param === 'fullname'  ) %>
                     <% if (fullNameError) { %>
                         <p class="alert alert-danger">
                             <% fullNameError.msg %>
                         </p>
                         <% } %>
                             Country:
-                            <input type="text" class="form-control" name="country">
+                            <input type="text" class="form-control" name="country" value="<%= address.country %>">
                             <% let countryError = validationErrors.find(err => err.param === 'country') %>
                                 <% if (countryError) { %>
                                     <p class="alert alert-danger">
@@ -20,7 +20,7 @@
                                     </p>
                                     <% } %>
                                         State:
-                                        <input type="text" class="form-control" name="state">
+                                        <input type="text" class="form-control" name="state" value="<%= address.state %>">
                                         <% let stateError = validationErrors.find(err => err.param === 'state') %>
                                             <% if (stateError) { %>
                                                 <p class="alert alert-danger">
@@ -28,7 +28,7 @@
                                                 </p>
                                                 <% } %>
                                                     City:
-                                                    <input type="text" class="form-control" name="city">
+                                                    <input type="text" class="form-control" name="city" value="<%= address.city %>">
                                                     <% let cityError = validationErrors.find(err => err.param === 'city') %>
                                                         <% if (cityError) { %>
                                                             <p class="alert alert-danger">
@@ -36,7 +36,7 @@
                                                             </p>
                                                             <% } %>
                                                                 Address Line 1:
-                                                                <input type="text" class="form-control" name="address1">
+                                                                <input type="text" class="form-control" name="address1" value="<%= address.address1 %>">
                                                                 <% let addressError = validationErrors.find(err => err.param === 'address1') %>
                                                                     <% if (addressError) { %>
                                                                         <p class="alert alert-danger">
@@ -45,8 +45,9 @@
                                                                         </p>
                                                                         <% } %>
                                                                             Address Line 2 (Optional)
-                                                                            <input type="text" class="form-control" name="address2"> Zip Code:
-                                                                            <input type="text" class="form-control" name="zip">
+                                                                            <input type="text" class="form-control" name="address2" value="<%= address.address2 %>"> 
+                                                                            Zip Code:
+                                                                            <input type="text" class="form-control" name="zip" value="<%= address.zip %>">
                                                                             <% let zipError = validationErrors.find(err => err.param === 'zip') %>
                                                                                 <% if (zipError) { %>
                                                                                     <p class="alert alert-danger">
@@ -54,7 +55,7 @@
                                                                                     </p>
                                                                                     <% } %>
                                                                                         Phone No:
-                                                                                        <input type="text" class="form-control" name="phone">
+                                                                                        <input type="text" class="form-control" name="phone" value="<%= address.phone %>">
                                                                                         <% let phoneError = validationErrors.find(err => err.param === 'phone') %>
                                                                                             <% if (phoneError) { %>
                                                                                                 <p class="alert alert-danger">
