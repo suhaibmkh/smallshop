@@ -61,7 +61,7 @@ const paypal = require("paypal-rest-sdk");
 	                                    "line2": shipp.address2,
 	                                    "city": shipp.city,
 	                                    "country_code": "US",
-	                                    "postal_code": "18117-134",
+	                                    "postal_code": shipp.zip,
 	                                    "state": shipp.state,
 	                                    "phone": shipp.phone[0]
 	                                },
