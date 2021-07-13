@@ -22,7 +22,6 @@
                                     <h3>
                                         Order No:
                                         <%= items[i].timestamp%>
-                                       
                                     </h3>
                                     <h5 class="card-title">
                                         <% for (let j = 0; j < items[i].orderlist.length; j++){%>
@@ -35,6 +34,10 @@
                                     </h5>
                                     <p>
                                         <%= items[i].status %>
+                                    </p>
+                                    <p>
+                                        Total:
+                                        <%= items[i].total %>
                                     </p>
                                     <%if( items[i].status!=="pendin"){%>
                                         <p>

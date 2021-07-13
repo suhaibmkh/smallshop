@@ -12,164 +12,166 @@
                                 <input type="hidden" name="test<%=i%>15" value=<%=items[i].price%>>
                                 <input type="hidden" name="test<%=i%>10" value="<%=items[i].productId%>">
                                 <input type="hidden" name="test<%=i%>20" value=<%=items[i].descrption%>>
-
-                                <%}%>
-                                    <input type="hidden" name="id" value=<%=items[0].userId%>>
-                                    <input type="submit" value="Place your order" style="background-color:#FFDE71;width:100%;border-radius: 8px;">
+                                <%total=Number(total)+items[i].price*items[i].amount%>
+                                    <%}%>
+                                        <%total=total+total*0.05+3*items.length%>
+                                            <input type="text" name="total" value=<%=total%>>
+                                            <input type="hidden" name="id" value=<%=items[0].userId%>>
+                                            <input type="submit" value="Place your order" style="background-color:#FFDE71;width:100%;border-radius: 8px;">
                         </form>
                     </div>
                     <% for (let i = 0; i < items.length; i++) { %>
-                        <%total=Number(total)+items[i].price*items[i].amount%>
-                            <div class="card mb-3" style="max-width: 540px;background-color:#F2FCFF;">
-                                <div class="row no-gutters">
-                                    <div class="col-md-4">
-                                        <img src="/<%= items[i].image %>" style="width: 95%;height:95%; " alt="<%=items[i].name %>">
+
+                        <div class="card mb-3" style="max-width: 540px;background-color:#F2FCFF;">
+                            <div class="row no-gutters">
+                                <div class="col-md-4">
+                                    <img src="/<%= items[i].image %>" style="width: 95%;height:95%; " alt="<%=items[i].name %>">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">
+                                            <%= items[i].name %>
+                                        </h5>
+                                        <h5 class="card-title">Details</h5>
+                                        <p class="card-text">
+                                            <%=items[i].description%>
+                                        </p>
+                                        <p class="card-text">
+                                            Price:
+                                            <%=items[i].price%>$
+                                        </p>
                                     </div>
-                                    <div class="col-md-8">
-                                        <div class="card-body">
-                                            <h5 class="card-title">
-                                                <%= items[i].name %>
-                                            </h5>
-                                            <h5 class="card-title">Details</h5>
-                                            <p class="card-text">
-                                                <%=items[i].description%>
-                                            </p>
-                                            <p class="card-text">
-                                                Price:
-                                                <%=items[i].price%>$
-                                            </p>
-                                        </div>
+                                </div>
+                                <div class=" container row">
+                                    <div class="col-9">
+                                        <br>
+                                        <form method="POST">
+                                            <input type="hidden" name="cartId" value="<%= items[i]._id%>">
+                                            <button onclick="myFunction1('<%= items[i]._id%>')" style="border-radius: 6px;width:10%" formaction="/cart/save">-</button>
+                                            <input id="<%= items[i]._id%>" type="number" value="<%= items[i].amount %>" name="amount" style="width:20%;">
+                                            <button onclick="myFunction('<%= items[i]._id%>')" style="border-radius: 6px;width:10%" formaction="/cart/save">+</button>
+                                        </form>
                                     </div>
-                                    <div class=" container row">
-                                        <div class="col-9">
+                                    <div class="col-3">
+                                        <form method="POST" action="/cart/delete" onsubmit="return confirm('Are you sure you wish to delete this item?')">
                                             <br>
-                                            <form method="POST">
-                                                <input type="hidden" name="cartId" value="<%= items[i]._id%>">
-                                                <button onclick="myFunction1('<%= items[i]._id%>')" style="border-radius: 6px;width:10%" formaction="/cart/save">-</button>
-                                                <input id="<%= items[i]._id%>" type="number" value="<%= items[i].amount %>" name="amount" style="width:20%;">
-                                                <button onclick="myFunction('<%= items[i]._id%>')" style="border-radius: 6px;width:10%" formaction="/cart/save">+</button>
-                                            </form>
-                                        </div>
-                                        <div class="col-3">
-                                            <form method="POST" action="/cart/delete" onsubmit="return confirm('Are you sure you wish to delete this item?')">
-                                                <br>
-                                                <input type="hidden" name="cartId" value="<%= items[i]._id%>">
-                                                <input type="submit" style="border-radius: 6px;width:100%;background-color:white;color:black;" value="Delete">
-                                            </form>
-                                        </div>
+                                            <input type="hidden" name="cartId" value="<%= items[i]._id%>">
+                                            <input type="submit" style="border-radius: 6px;width:100%;background-color:white;color:black;" value="Delete">
+                                        </form>
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                        <% } %>
                             <% } %>
-                                <% } %>
 
-                                    <% if(items.length > 0) { %>
+                                <% if(items.length > 0) { %>
+                                    <div class="card mb-3" style="max-width: 540px;background-color:#F0F0F0;">
+                                        <div class="  row ">
+                                            <div class="col-10">
+                                                <p>Items(
+                                                    <%=items.length%>):
+                                            </div>
+                                            <div class="col-2">
+                                                <%=total%>$
+                                            </div>
+                                            <div class="col-10">
+                                                <p>Shipping:</p>
+                                            </div>
+                                            <div class="col-2">
+                                                <%=items.length*3%>$
+                                            </div>
+                                            <div class="col-10">
+                                                <p>Tax:</p>
+                                            </div>
+                                            <div class="col-2">
+                                                <%=Math.round(total*0.05)%>$
+                                            </div>
+                                            <div class="col-10">
+                                                <h5>Total:</h5>
+                                            </div>
+                                            <div class="col-2">
+                                                <%=total*0.05+total+ items.length*3%>$
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <h4>Ship to:</h4>
+                                    <div class="card mb-3" style="max-width: 540px;background-color:#F0F0F0;">
+                                        <div class="  row ">
+                                            <div class="col-10">
+                                                <p>
+                                                    Name:
+                                                    <%= addresses.fullname %>
+                                                </p>
+                                                <p>
+                                                    Email:
+                                                    <%= addresses.email %>
+                                                </p>
+                                                <p>
+                                                    Country:
+                                                    <%= addresses.country %>
+                                                </p>
+                                                <p>
+                                                    State:
+                                                    <%= addresses.state %>
+                                                </p>
+                                                <p>
+                                                    ZIP Code:
+                                                    <%= addresses.zip %>
+                                                </p>
+                                                <p>
+                                                    City:
+                                                    <%= addresses.city %>
+                                                </p>
+                                                <p>
+                                                    Adress:
+                                                    <%= addresses.address1 %>
+                                                </p>
+                                                <p>
+                                                    <%= addresses.address2 %>
+                                                </p>
+                                                <p>
+                                                    Phone:
+                                                    <%= addresses.phone %>
+                                                </p>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-10">
+                                                </div>
+                                                <div class="col-2"></div>
+                                                <form action="/shippingaddress" method="POST">
+                                                    <input type="submit" value=">">
+                                                    <input type="hidden" name="id" value="<%= addresses._id %>">
+                                                    <input type="hidden" name="fullname" value="<%= addresses.fullname %>">
+                                                    <input type="hidden" name="country" value="<%= addresses.country %>">
+                                                    <input type="hidden" name="address1" value="<%= addresses.address1 %>">
+                                                    <input type="hidden" name="address2" value="<%= addresses.address2 %>">
+                                                    <input type="hidden" name="state" value="<%= addresses.state %>">
+                                                    <input type="hidden" name="city" value="<%= addresses.city %>">
+                                                    <input type="hidden" name="zip" value="<%= addresses.zip %>">
+                                                    <input type="hidden" name="phone" value="<%= addresses.phone %>">
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <form action="/confirmaddress/confirminstruction" method="get">
+                                        <input type="hidden" name="id1" value=" <%= addresses.email %>">
                                         <div class="card mb-3" style="max-width: 540px;background-color:#F0F0F0;">
-                                            <div class="  row ">
+                                            <div class="row">
                                                 <div class="col-10">
-                                                    <p>Items(
-                                                        <%=items.length%>):
+                                                    Delivery Instructions (Optional)
+                                                    <p>
+                                                        <%=addresses.instruction%>
+                                                    </p>
+
                                                 </div>
                                                 <div class="col-2">
-                                                    <%=total%>$
-                                                </div>
-                                                <div class="col-10">
-                                                    <p>Shipping:</p>
-                                                </div>
-                                                <div class="col-2">
-                                                    <%=items.length*3%>$
-                                                </div>
-                                                <div class="col-10">
-                                                    <p>Tax:</p>
-                                                </div>
-                                                <div class="col-2">
-                                                    <%=Math.round(total*0.05)%>$
-                                                </div>
-                                                <div class="col-10">
-                                                    <h5>Total:</h5>
-                                                </div>
-                                                <div class="col-2">
-                                                    <%=total*0.05+total+ items.length*3%>$
+                                                    <input type="submit" value=">">
                                                 </div>
                                             </div>
                                         </div>
-                                        <h4>Ship to:</h4>
-                                        <div class="card mb-3" style="max-width: 540px;background-color:#F0F0F0;">
-                                            <div class="  row ">
-                                                <div class="col-10">
-                                                    <p>
-                                                        Name:
-                                                        <%= addresses.fullname %>
-                                                    </p>
-                                                    <p>
-                                                        Email:
-                                                        <%= addresses.email %>
-                                                    </p>
-                                                    <p>
-                                                        Country:
-                                                        <%= addresses.country %>
-                                                    </p>
-                                                    <p>
-                                                        State:
-                                                        <%= addresses.state %>
-                                                    </p>
-                                                    <p>
-                                                        ZIP Code:
-                                                        <%= addresses.zip %>
-                                                    </p>
-                                                    <p>
-                                                        City:
-                                                        <%= addresses.city %>
-                                                    </p>
-                                                    <p>
-                                                        Adress:
-                                                        <%= addresses.address1 %> 
-                                                    </p>
-                                                    <p>
-                                                      <%= addresses.address2 %>  
-                                                    </p>
-                                                    <p>
-                                                        Phone:
-                                                        <%= addresses.phone %>
-                                                    </p>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-10">
-                                                    </div>
-                                                    <div class="col-2"></div>
-                                                    <form action="/shippingaddress" method="POST">
-                                                        <input type="submit" value=">">
-                                                        <input type="hidden" name="id" value="<%= addresses._id %>">
-                                                        <input type="hidden" name="fullname" value="<%= addresses.fullname %>">
-                                                        <input type="hidden" name="country" value="<%= addresses.country %>">
-                                                        <input type="hidden" name="address1" value="<%= addresses.address1 %>">
-                                                        <input type="hidden" name="address2" value="<%= addresses.address2 %>">
-                                                        <input type="hidden" name="state" value="<%= addresses.state %>">
-                                                        <input type="hidden" name="city" value="<%= addresses.city %>">
-                                                        <input type="hidden" name="zip" value="<%= addresses.zip %>">
-                                                        <input type="hidden" name="phone" value="<%= addresses.phone %>">
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <hr>
-                                        <form action="/confirmaddress/confirminstruction" method="get">
-                                            <input type="hidden" name="id1" value=" <%= addresses.email %>">
-                                            <div class="card mb-3" style="max-width: 540px;background-color:#F0F0F0;">
-                                                <div class="row">
-                                                    <div class="col-10">
-                                                        Delivery Instructions (Optional)
-                                                        <p>
-                                                            <%=addresses.instruction%>
-                                                        </p>
-
-                                                    </div>
-                                                    <div class="col-2">
-                                                        <input type="submit" value=">">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </form>
+                                    </form>
 
         </div>
         <%}%>

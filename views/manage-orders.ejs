@@ -10,7 +10,7 @@
 
                     <% for (let i = 0; i < items.length; i++) { %>
 
-<%if (!items[i].pay){%>
+
 
 
                         <div class="container">
@@ -33,17 +33,24 @@
                                                                 <%= items[i].orderlist[j].name%>
                                                             </a>
                                                         </p>
+
                                                         <%}%>
+
                                                 </h5>
                                                 <p>
                                                     Shipping status:
                                                     <%= items[i].status %>
                                                 </p>
                                                 <p>
+                                                    Total:
+                                                    <%= items[i].total %>
+                                                </p>
+                                                <p>
 
                                                     Requested By:
                                                     <%= items[i].userId %>
                                                 </p>
+
 
                                                 <input type="hidden" name="orderid" value="<%= items[i]._id %>">
                                                 <br>
@@ -63,12 +70,26 @@
 
 
                                 </form>
+                                <form action="/cancelorder" method="post">
+                                    <div class="row">
+                                        <div class="col-9">
+
+                                        </div>
+                                        <div class="col-3">
+                                            <input type="hidden" name="cancelorder" value="<%= items[i].id %>">
+                                            <%if( items[i].status=="pending" ){%>
+                                                <input type="submit" value="cancel order">
+                                                <%}%>
+                                        </div>
+                                    </div>
+
+                                </form>
                             </div>
                         </div>
 
 
                         <% } %>
- <% } %>
+
 
                             <% } %>
 
