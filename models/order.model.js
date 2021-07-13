@@ -43,8 +43,8 @@ const Order = mongoose.model("order", orderSchema);
 const OrderL = mongoose.model("orderl", orderListSchema);
 
 exports.addNewOrder = data => {
-    console.log("data", data)
-    var key, m, m1, m2, p, d;
+
+    var key, m, m1, m2, p, d, ph;
     var orderList1 = []
     var i = 0;
     for (key in data) {
@@ -57,8 +57,9 @@ exports.addNewOrder = data => {
         m2 = data["test" + j + "5"]
         p = data["test" + j + "15"]
         d = data["test" + j + "20"]
+        ph = data["test" + j + "25"]
 
-        orderList1.push({ amount: m, id: m1, name: m2, price: p, description: d })
+        orderList1.push({ amount: m, id: m1, name: m2, price: p, description: d, image: ph })
     }
 
     return new Promise((resolve, reject) => {
