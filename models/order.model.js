@@ -26,7 +26,7 @@ const orderListSchema = mongoose.Schema({
     userId: String,
     timestamp: Number,
 
-
+    total: String,
     status: {
         type: String,
         default: "pending"
@@ -43,7 +43,7 @@ const Order = mongoose.model("order", orderSchema);
 const OrderL = mongoose.model("orderl", orderListSchema);
 
 exports.addNewOrder = data => {
-
+    console.log("data", data)
     var key, m, m1, m2, p, d;
     var orderList1 = []
     var i = 0;
@@ -70,7 +70,7 @@ exports.addNewOrder = data => {
                 // data.timestamp = Date.now();
 
 
-                var data1 = { orderlist: orderList1, userId: data.id, timestamp: Date.now() }
+                var data1 = { orderlist: orderList1, userId: data.id, timestamp: Date.now(), total: data.total }
 
                 let orderl = new OrderL(data1);
                 return orderl.save();
@@ -91,7 +91,7 @@ exports.getOrdersByUser = userId => {
         mongoose
             .connect(DB_URL)
             .then(() => {
-                return OrderL.find({ userId: userId }, {}, { sort: {timestamp: 1 } });
+                return OrderL.find({ userId: userId }, {}, { sort: { pay: -1, timestamp: 1 } });
             })
             .then(items => {
 
@@ -110,7 +110,7 @@ exports.getOrdersById = Id => {
             .connect(DB_URL)
             .then(() => {
                 console.log(Id)
-                return OrderL.find({ _id: Id }, {}, {sort: { timestamp: 1 } });
+                return OrderL.find({ _id: Id }, {}, { sort: { pay: -1, timestamp: 1 } });
             })
             .then(items => {
 

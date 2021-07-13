@@ -37,6 +37,7 @@ exports.addNewAddress = data => {
     });
 }
 exports.updateAddress = data => {
+    console.log("data", data)
     return new Promise((resolve, reject) => {
         mongoose
             .connect(DB_URL)
