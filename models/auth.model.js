@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-
+var nodemailer = require("nodemailer");
 const bcrypt = require("bcrypt");
 
 const DB_URL =
@@ -23,6 +23,16 @@ const userSchema = mongoose.Schema({
     instruction: String
 });
 
+var smtpTransport = nodemailer.createTransport("SMTP",{
+    service: "Gmail",
+    auth: {
+        user: "suhaib0@gmail.com",
+        pass: "Galaxy-sm1"
+    }
+});
+var rand,mailOptions,host,link;
+
+
 const User = mongoose.model("acct", userSchema);
 
 exports.createNewUser = (username, email, password, fullname, country, state, city, address1, address2, zip, phone, instruction) => {
@@ -44,6 +54,25 @@ exports.createNewUser = (username, email, password, fullname, country, state, ci
                 }
             })
             .then(hashedPassword => {
+            rand=Math.floor((Math.random() * 100) + 54);
+    host=req.get('host');
+    link="http://"+req.get('host')+"/verify?id="+rand;
+    mailOptions={
+        to : email,
+        subject : "Please confirm your Email account",
+        html : "Hello,<br> Please Click on the link to verify your email.<br><a href="+link+">Click here to verify</a>" 
+    }
+    console.log(mailOptions);
+    smtpTransport.sendMail(mailOptions, function(error, response){
+     if(error){
+            console.log(error);
+        res.end("error");
+     }else{
+            console.log("Message sent: " + response.message);
+        res.end("sent");
+         }
+});
+});
                 let user = new User({
                     username: username,
                     email: email,
