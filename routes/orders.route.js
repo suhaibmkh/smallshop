@@ -22,5 +22,11 @@ router.post(
     bodyParser.urlencoded({ extended: true }),
     orderController.postCancel
 );
+router.post(
+    "/cancelorder",
+    authGuard.isAuth,
+    bodyParser.urlencoded({ extended: true }),
+    orderController.postCancel1
+);
 
 module.exports = router;
