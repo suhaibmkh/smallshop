@@ -39,20 +39,24 @@ exports.getConfirminstruction = (req, res, next) => {
     })
 }
 exports.postConfirmAddress = (req, res, next) => {
-
+    console.log("req.body", req.body)
     if (validationResult(req).isEmpty()) {
 
         confirmAddressModel
             .updateAddress({
                 id: req.body.id,
                 fullname: req.body.fullname,
+                country: req.body.country,
+                city: req.body.city,
+                state: req.body.state,
                 address1: req.body.address1,
                 address2: req.body.address2,
-                country: req.body.country,
-                state: req.body.state,
-                city: req.body.city,
-                phone: req.body.phone,
+
+
+
+
                 zip: req.body.zip,
+                phone: req.body.phone,
                 userId: req.session.userId,
                 timestamp: Date.now()
             })

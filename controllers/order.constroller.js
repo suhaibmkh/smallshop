@@ -19,6 +19,7 @@ exports.getOrderVerify = (req, res, next) => {
 };
 
 exports.getOrder = (req, res, next) => {
+    console.log(req.body)
     orderModel
         .getOrdersByUser(req.session.userId)
         .then(items => {
@@ -26,7 +27,8 @@ exports.getOrder = (req, res, next) => {
                 pageTitle: "Orders",
                 isUser: true,
                 isAdmin: req.session.isAdmin,
-                items: items
+                items: items,
+
             });
         })
         .catch(err => res.redirect("/error"));
@@ -54,6 +56,15 @@ exports.postCancel = (req, res, next) => {
     console.log("route is Ok")
     orderModel
         .cancelOrder(req.body.id)
+        .then(() => res.redirect("/orders"))
+        .catch(err => {
+            res.redirect("/error");
+        });
+};
+exports.postCancel1 = (req, res, next) => {
+    console.log(req.body.cancelOrder)
+    orderModel
+        .cancelOrder(req.body.cancelorder)
         .then(() => res.redirect("/orders"))
         .catch(err => {
             res.redirect("/error");
