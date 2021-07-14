@@ -74,7 +74,7 @@
 
                         </form>
                         <% } %>
-                            <% if (items[i].status === 'pending' || items[i].status === 'sent') { %>
+                            <% if (items[i].status === 'sent') { %>
                                 <form style="display: inline-block" method="POST" action="/admin/orders">
                                     <input type="hidden" name="orderId" value="<%= items[i]._id %>">
                                     <input type="hidden" name="status" value="complete">
