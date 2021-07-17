@@ -19,7 +19,7 @@ exports.getOrderVerify = (req, res, next) => {
 };
 
 exports.getOrder = (req, res, next) => {
-    console.log(req.body)
+
     orderModel
         .getOrdersByUser(req.session.userId)
         .then(items => {

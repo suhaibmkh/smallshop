@@ -14,6 +14,7 @@ exports.postPay = (req, res, next) => {
             console.log("shipp", shipp)
             order.getOrdersById(req.body.id)
                 .then((orders) => {
+
                     req.session.orderId = req.body.id
                     const item1 = []
                     var i = 1
@@ -45,8 +46,8 @@ exports.postPay = (req, res, next) => {
                             payment_method: "paypal",
                         },
                         redirect_urls: {
-                            "return_url": "https://suhaib-shop.herokuapp.com/success",
-                            "cancel_url": "https://suhaib-shop.herokuapp.com/cancel",
+                            "return_url": "http://" + req.headers.host + "/success",
+                            "cancel_url": "http://" + req.headers.host + "/cancel",
                         },
                         transactions: [{
                             item_list: {
@@ -68,11 +69,13 @@ exports.postPay = (req, res, next) => {
                                 total: sum,
 
                             },
-                            description: "Red Hat for the best team ever",
+                            description: " ",
                         }, ],
                     };
 
                     paypal.payment.create(create_payment_json, function(error, payment) {
+                        console.log(create_payment_json)
+                        console.log(payment)
                         if (error) {
                             throw error;
                         } else {
@@ -82,6 +85,7 @@ exports.postPay = (req, res, next) => {
                                 }
                             }
                         }
+
                     });
                 })
 
