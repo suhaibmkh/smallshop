@@ -56,7 +56,7 @@ exports.postPay = (req, res, next) => {
                                     "line1": shipp.address1,
                                     "line2": shipp.address2,
                                     "city": shipp.city,
-                                    "country_code": shipp.country,
+                                    "country_code": "US",
                                     "postal_code": shipp.zip,
                                     "state": shipp.state,
                                     "phone": shipp.phone
