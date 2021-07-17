@@ -1,6 +1,11 @@
 const mongoose = require("mongoose");
-
+const nodemailer = require("nodemailer")
+const { google } = require("googleapis");
+const OAuth2 = google.auth.OAuth2;
 const bcrypt = require("bcrypt");
+const jwt = require('jsonwebtoken');
+const JWT_KEY = "jwtactive987";
+const JWT_RESET_KEY = "jwtreset987";
 
 const DB_URL =
     "mongodb+srv://suhaib-khater_80:Galaxy-sm1@cluster0.vzcs0.mongodb.net/online-shop?retryWrites=true&w=majority";
@@ -9,6 +14,10 @@ const userSchema = mongoose.Schema({
     email: String,
     password: String,
     isAdmin: {
+        type: Boolean,
+        default: false
+    },
+    valid: {
         type: Boolean,
         default: false
     },
@@ -25,7 +34,9 @@ const userSchema = mongoose.Schema({
 
 const User = mongoose.model("acct", userSchema);
 
-exports.createNewUser = (username, email, password, fullname, country, state, city, address1, address2, zip, phone, instruction) => {
+
+
+exports.createNewUser = (host1, username, email, password, fullname, country, state, city, address1, address2, zip, phone, instruction) => {
 
     return new Promise((resolve, reject) => {
         mongoose
@@ -44,6 +55,7 @@ exports.createNewUser = (username, email, password, fullname, country, state, ci
                 }
             })
             .then(hashedPassword => {
+
                 let user = new User({
                     username: username,
                     email: email,
@@ -58,6 +70,63 @@ exports.createNewUser = (username, email, password, fullname, country, state, ci
                     phone: phone,
                     password: hashedPassword
                 });
+
+
+
+                const oauth2Client = new OAuth2(
+                    "173872994719-pvsnau5mbj47h0c6ea6ojrl7gjqq1908.apps.googleusercontent.com", // ClientID
+                    "OKXIYR14wBB_zumf30EC__iJ", // Client Secret
+                    "https://developers.google.com/oauthplayground" // Redirect URL
+                );
+
+                oauth2Client.setCredentials({
+                    refresh_token: "1//04T_nqlj9UVrVCgYIARAAGAQSNwF-L9IrGm-NOdEKBOakzMn1cbbCHgg2ivkad3Q_hMyBkSQen0b5ABfR8kPR18aOoqhRrSlPm9w"
+                });
+                const accessToken = oauth2Client.getAccessToken()
+
+                const token = jwt.sign({ username, email, password }, JWT_KEY, { expiresIn: '30m' });
+                console.log("user1", user)
+                console.log("token", token)
+                const host = 'http://' + host1;
+                console.log("host", host)
+                const link = host + "/verify?id=" + token
+                console.log("link", link)
+                const transporter = nodemailer.createTransport({
+                    service: 'gmail',
+                    auth: {
+                        type: "OAuth2",
+                        user: "nodejsa@gmail.com",
+                        clientId: "173872994719-pvsnau5mbj47h0c6ea6ojrl7gjqq1908.apps.googleusercontent.com",
+                        clientSecret: "OKXIYR14wBB_zumf30EC__iJ",
+                        refreshToken: "1//04T_nqlj9UVrVCgYIARAAGAQSNwF-L9IrGm-NOdEKBOakzMn1cbbCHgg2ivkad3Q_hMyBkSQen0b5ABfR8kPR18aOoqhRrSlPm9w",
+
+                    },
+                });
+                const mailOptions = {
+                    from: '"Auth Admin" <nodejsa@gmail.com>', // sender address
+                    to: email, // list of receivers
+                    subject: "Account Verification: NodeJS Auth ✔", // Subject line
+                    generateTextFromHTML: true,
+                    html: "Hello,<br> Please Click on the link to verify your email.<br><a href=" + link + ">Click here to verify</a>"
+                }
+
+                transporter.sendMail(mailOptions, (error, info) => {
+                    if (error) {
+                        console.log(error);
+                        req.flash(
+                            'error_msg',
+                            'Something went wrong on our end. Please register again.'
+                        );
+                        res.redirect('/signup');
+                    } else {
+                        console.log('Mail sent : %s', info.response);
+                        req.flash(
+                            'success_msg',
+                            'Activation link sent to email ID. Please activate to log in.'
+                        );
+                        res.redirect('/login');
+                    }
+                })
                 return user.save();
             })
             .then(() => {
@@ -72,7 +141,7 @@ exports.createNewUser = (username, email, password, fullname, country, state, ci
 };
 
 exports.updateInstruction = (data, email) => {
-    console.log(data)
+
     return new Promise((resolve, reject) => {
         mongoose
             .connect(DB_URL)
@@ -98,8 +167,7 @@ exports.updateAddress = data => {
         mongoose
             .connect(DB_URL)
             .then(() => {
-                console.log("Data", data)
-                console.log(" req.session.userId", data.userId)
+
                 return User.findOneAndUpdate({ email: data.userId }, { fullname: data.fullname, country: data.country, state: data.state, city: data.city, address1: data.address1, address2: data.addresses2, zip: data.zip, phone: data.phone })
 
             })
@@ -157,6 +225,9 @@ exports.login = (email, password) => {
                         if (!same) {
                             mongoose.disconnect();
                             reject("password is incorrect");
+                        } else if (!user.valid) {
+                            mongoose.disconnect();
+                            reject("your Email not activate");
                         } else {
                             mongoose.disconnect();
                             resolve({
@@ -188,5 +259,47 @@ exports.getUserById = Id => {
                 reject(err);
             });
     })
+
+}
+exports.active = (req) => {
+
+
+    const token = req.query.id;
+
+    let errors = [];
+    if (token) {
+        jwt.verify(token, JWT_KEY, (err, decodedToken) => {
+
+            if (err) {
+                req.flash(
+                    'error_msg',
+                    'Incorrect or expired link! Please register again.'
+                );
+
+            } else {
+                const { name, email, password } = decodedToken;
+                return new Promise((resolve, reject) => {
+                    mongoose
+                        .connect(DB_URL)
+                        .then(() => User.findOneAndUpdate({ email: email }, { valid: true }))
+                        .then((user) => {
+
+                            mongoose.disconnect();
+                            resolve();
+
+                        }).catch(err => {
+                            mongoose.disconnect();
+                            reject(err);
+                        })
+
+                })
+
+
+            }
+
+        })
+    } else {
+        console.log("Account activation error!")
+    }
 
 }
