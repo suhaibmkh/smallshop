@@ -6,11 +6,12 @@ const validationResult = require("express-validator").validationResult;
 exports.getCart = (req, res, next) => {
     address.getUserById(req.session.userId)
         .then(addresses => {
-            console.log(addresses)
+
             cartModel
                 .getItemsByUser(req.session.userId)
                 .then((items) => {
                     res.render("cart", {
+                        user: req.session.id,
                         addresses: addresses,
                         items: items,
                         isUser: true,

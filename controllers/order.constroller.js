@@ -8,6 +8,7 @@ exports.getOrderVerify = (req, res, next) => {
         .getItemById(req.query.order)
         .then(cartItem => {
             res.render("verify-order", {
+                user: req.session.userId,
                 cart: cartItem,
                 isUser: true,
                 isAdmin: req.session.isAdmin,
@@ -24,6 +25,7 @@ exports.getOrder = (req, res, next) => {
         .getOrdersByUser(req.session.userId)
         .then(items => {
             res.render("orders", {
+                user: req.session.userId,
                 pageTitle: "Orders",
                 isUser: true,
                 isAdmin: req.session.isAdmin,
@@ -53,7 +55,7 @@ exports.postOrder = (req, res, next) => {
 };
 
 exports.postCancel = (req, res, next) => {
-    console.log("route is Ok")
+
     orderModel
         .cancelOrder(req.body.id)
         .then(() => res.redirect("/orders"))
@@ -62,7 +64,7 @@ exports.postCancel = (req, res, next) => {
         });
 };
 exports.postCancel1 = (req, res, next) => {
-    console.log(req.body.cancelOrder)
+
     orderModel
         .cancelOrder(req.body.cancelorder)
         .then(() => res.redirect("/orders"))

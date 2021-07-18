@@ -5,6 +5,7 @@ exports.getProduct = (req, res, next) => {
         .getFirstProduct()
         .then(product => {
             res.render("product", {
+                user: req.session.userId,
                 product: product,
                 isUser: req.session.userId,
                 isAdmin: req.session.isAdmin,
@@ -20,6 +21,7 @@ exports.getProductById = (req, res, next) => {
         .getProductById(id)
         .then(product => {
             res.render("product", {
+                user: req.session.userId,
                 product: product,
                 isUser: req.session.userId,
                 isAdmin: req.session.isAdmin,

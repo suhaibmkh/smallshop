@@ -32,6 +32,7 @@ exports.postConfirmAddress1 = (req, res, next) => {
 exports.getConfirminstruction = (req, res, next) => {
 
     res.render("instruction", {
+        user: req.session.userId,
         isUser: req.session.userId,
         isAdmin: req.session.isAdmin,
 
@@ -51,10 +52,6 @@ exports.postConfirmAddress = (req, res, next) => {
                 state: req.body.state,
                 address1: req.body.address1,
                 address2: req.body.address2,
-
-
-
-
                 zip: req.body.zip,
                 phone: req.body.phone,
                 userId: req.session.userId,

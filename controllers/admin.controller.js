@@ -4,6 +4,7 @@ const validationResult = require("express-validator").validationResult;
 
 exports.getAdd = (req, res, next) => {
     res.render("add-product", {
+        user: req.session.userId,
         validationErrors: req.flash("validationErrors"),
         isUser: true,
         isAdmin: true,
@@ -36,6 +37,7 @@ exports.getOrders = (req, res, next) => {
         .getAllOrders()
         .then(items => {
             res.render("manage-orders", {
+                user: req.session.id,
                 pageTitle: "Manage Orders",
                 isUser: true,
                 isAdmin: true,
@@ -48,8 +50,9 @@ exports.getOneOrder = (req, res, next) => {
     ordersModel
         .getOrdersById(req.body.orderid)
         .then(items => {
-            console.log(items)
+
             res.render("orderbyid", {
+                user: req.session.id,
                 pageTitle: "order details",
                 isUser: true,
                 isAdmin: true,

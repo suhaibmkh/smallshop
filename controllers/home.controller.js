@@ -10,6 +10,7 @@ exports.getHome = (req, res, next) => {
     productsPromise
         .then(products => {
             res.render("index", {
+                user: req.session.userId,
                 products: products,
                 isUser: req.session.userId,
                 isAdmin: req.session.isAdmin,

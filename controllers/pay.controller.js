@@ -8,10 +8,10 @@ paypal.configure({
 });
 
 exports.postPay = (req, res, next) => {
-    console.log("route is Ok")
+
     address.getUserById(req.session.userId)
         .then((shipp) => {
-            console.log("shipp", shipp)
+
             order.getOrdersById(req.body.id)
                 .then((orders) => {
 
@@ -24,7 +24,7 @@ exports.postPay = (req, res, next) => {
                         if (order.name) {
                             sum1 = Number(order.price) + (order.price * 0.05) + 3
 
-                            console.log(sum1)
+
                             item1.push({
                                 name: order.name,
                                 sku: i,
@@ -74,9 +74,10 @@ exports.postPay = (req, res, next) => {
                     };
 
                     paypal.payment.create(create_payment_json, function(error, payment) {
-                        console.log(create_payment_json)
                         console.log(payment)
+
                         if (error) {
+                            console.log(JSON.stringify(error));
                             throw error;
                         } else {
                             for (let i = 0; i < payment.links.length; i++) {
