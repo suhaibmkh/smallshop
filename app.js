@@ -15,7 +15,7 @@ const shippingRouter = require("./routes/shipping.route");
 const confirmAddressRouter = require("./routes/confirmAddress.route")
 const payRoute = require("./routes/pay.route")
 const verifyRoute = require("./routes/verify.route")
-
+const resetRoute = require("./routes/reset.route")
 const paypal = require("paypal-rest-sdk");
 const order = require("./models/order.model")
 
@@ -59,6 +59,9 @@ app.use("/confirmaddress", confirmAddressRouter);
 app.use("/update", confirmAddressRouter);
 app.use("/pay", payRoute)
 app.use('/verify', verifyRoute);
+
+app.use("/resetpass", resetRoute)
+
 app.get("/success", (req, res, next) => {
 
     const payerId = req.query.PayerID;
@@ -78,7 +81,7 @@ app.get("/success", (req, res, next) => {
         error,
         payment
     ) {
-        
+
         if (error) {
             console.log(error.response);
             throw error;
