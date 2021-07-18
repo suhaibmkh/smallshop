@@ -84,6 +84,21 @@ router.post(
     .withMessage("password must be at least 6 charachters"),
     authController.postLogin
 );
+router.get('/forgot', authController.getForgotPassword);
+router.post("/resetpass1",
+    bodyParser.urlencoded({ extended: true }),
+    check("password")
+    .not()
+    .isEmpty()
+    .withMessage("password is required")
+    .isLength({ min: 6 })
+    .withMessage("password must be at least 6 charachters"),
+    check("confirmPassword").custom((value, { req }) => {
+        if (value === req.body.password) return true;
+        else throw "passwords dont equal";
+    }),
+    authController.resetPass
+)
 
 router.all("/logout", authGuard.isAuth, authController.logout);
 
