@@ -12,7 +12,7 @@
                                 <input type="hidden" name="test<%=i%>15" value=<%=items[i].price%>>
                                 <input type="hidden" name="test<%=i%>10" value="<%=items[i].productId%>">
                                 <input type="hidden" name="test<%=i%>20" value=<%=items[i].descrption%>>
-                                <input type="hidden" name="test<%=i%>25" value=<%=items[i].image + ".jpg" %>>
+                                <input type="hidden" name="test<%=i%>25" value=<%=items[i].image%>>
                                 <%total=Number(total)+items[i].price*items[i].amount%>
                                     <%}%>
                                         <%total=total+total*0.05+3*items.length%>

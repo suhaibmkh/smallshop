@@ -1,0 +1,26 @@
+<%- include('parts/header')%>
+    <%- include('parts/navbar')%>
+
+        <div class="container">
+            <form action="/resetpass1" method="post">
+                <input type="hidden" class="form-control" name="email" value="<%=email%>">
+                <input type="password" class="form-control" name="password" placeholder="New Password">
+                <% let passwordError = validationErrors.find(err => err.param === 'password') %>
+                    <% if (passwordError) { %>
+                        <p class="alert alert-danger">
+                            <%= passwordError.msg %>
+                        </p>
+                        <% } %>
+                            <input type="password" class="form-control" name="confirmPassword" placeholder="Confirm Password">
+
+                            <% let passwordConfirmError = validationErrors.find(err => err.param === 'passwordConfirm') %>
+                                <% if (passwordConfirmError) { %>
+                                    <p class="alert alert-danger">
+                                        <%= passwordConfirmError.msg %>
+                                    </p>
+                                    <% } %>
+                                        <input type="submit" value="Reset" class="btn btn-primary">
+            </form>
+        </div>
+
+        <%- include('parts/footer')%>

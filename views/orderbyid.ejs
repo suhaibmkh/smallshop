@@ -74,11 +74,11 @@
 
                         </form>
                         <% } %>
-                            <% if (items[i].status === 'sent') { %>
+                            <% if (items[i].status === 'pending' || items[i].status === 'sent') { %>
                                 <form style="display: inline-block" method="POST" action="/admin/orders">
                                     <input type="hidden" name="orderId" value="<%= items[i]._id %>">
                                     <input type="hidden" name="status" value="complete">
-                                    <input type="hidden" class="form-control" name="track" value="" placeholder="fill track number">
+                                    <input type="hidden" class="form-control" name="track" value="<%=items[i].trackno%>" placeholder="fill track number">
                                     <input type="submit" value="Complete" style="background-color:#FFDE71;width:100%;border-radius: 8px;">
                                 </form>
                                 <% } %>
