@@ -85,12 +85,12 @@ exports.createNewUser = (host1, username, email, password, fullname, country, st
                 const accessToken = oauth2Client.getAccessToken()
 
                 const token = jwt.sign({ username, email, password }, JWT_KEY, { expiresIn: '30m' });
-                console.log("user1", user)
-                console.log("token", token)
+
+
                 const host = 'http://' + host1;
-                console.log("host", host)
+
                 const link = host + "/verify?id=" + token
-                console.log("link", link)
+
                 const transporter = nodemailer.createTransport({
                     service: 'gmail',
                     auth: {
@@ -302,4 +302,26 @@ exports.active = (req) => {
         console.log("Account activation error!")
     }
 
+}
+exports.resetP = data => {
+    return new Promise((resolve, reject) => {
+        mongoose
+            .connect(DB_URL)
+            .then(() => {
+                return bcrypt.hash(data.body.password, 10);
+            })
+            .then((hashpass) => {
+                return User.updateOne({ email: data.body.email }, { password: hashpass })
+                    .then(items => {
+                        mongoose.disconnect();
+                        resolve();
+                    })
+
+                .catch(err => {
+                    mongoose.disconnect();
+                    reject(err);
+                });
+
+            });
+    });
 }
