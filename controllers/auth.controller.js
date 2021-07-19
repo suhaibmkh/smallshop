@@ -111,7 +111,14 @@ exports.activereset = (req, res, next) => {
                 'success_msg',
                 'Activation link sent to email ID. Please activate to log in.'
             );
-            res.redirect('/login');
+            res.render("activepass", {
+                user: req.session.userId,
+                authError: req.flash("authError")[0],
+                validationErrors: req.flash("validationErrors"),
+                isUser: false,
+                isAdmin: false,
+                pageTitle: "Login"
+            });
         }
     })
 }
@@ -161,7 +168,7 @@ exports.getFpage = (req, res, next) => {
             }
         })
     } else {
-        console.log("Reset error!")
+        res.redirect("/error");
     }
 
 }
