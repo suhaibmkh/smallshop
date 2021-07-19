@@ -124,7 +124,13 @@ exports.createNewUser = (host1, username, email, password, fullname, country, st
                             'success_msg',
                             'Activation link sent to email ID. Please activate to log in.'
                         );
-                        res.redirect('/login');
+                        res.render("activate", {
+                            user: req.session.userId,
+
+                            isUser: false,
+                            isAdmin: false,
+                            pageTitle: "Active Account"
+                        });
                     }
                 })
                 return user.save();
