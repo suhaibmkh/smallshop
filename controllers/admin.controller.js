@@ -37,7 +37,7 @@ exports.getOrders = (req, res, next) => {
         .getAllOrders()
         .then(items => {
             res.render("manage-orders", {
-                user: req.session.id,
+                user: req.session.userId,
                 pageTitle: "Manage Orders",
                 isUser: true,
                 isAdmin: true,
@@ -52,7 +52,7 @@ exports.getOneOrder = (req, res, next) => {
         .then(items => {
 
             res.render("orderbyid", {
-                user: req.session.id,
+                user: req.session.userId,
                 pageTitle: "order details",
                 isUser: true,
                 isAdmin: true,

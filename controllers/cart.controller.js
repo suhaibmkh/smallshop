@@ -11,7 +11,7 @@ exports.getCart = (req, res, next) => {
                 .getItemsByUser(req.session.userId)
                 .then((items) => {
                     res.render("cart", {
-                        user: req.session.id,
+                        user: req.session.userId,
                         addresses: addresses,
                         items: items,
                         isUser: true,
