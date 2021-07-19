@@ -27,7 +27,13 @@ exports.postSignup = (req, res, next) => {
     if (validationResult(req).isEmpty()) {
         authModel
             .createNewUser(req.headers.host, req.body.username, req.body.email, req.body.password, req.body.fullname, req.body.country, req.body.state, req.body.city, req.body.address1, req.body.address2, req.body.zip, req.body.phone[0], req.body.instruction)
-            .then(() => res.redirect("/login"))
+            .then(() => res.render("activate", {
+                user: req.session.userId,
+
+                isUser: false,
+                isAdmin: false,
+                pageTitle: "Active Account"
+            }))
             .catch(err => {
                 req.flash("authError", err);
                 res.redirect("/signup");
@@ -159,10 +165,6 @@ exports.getFpage = (req, res, next) => {
     }
 
 }
-
-
-
-
 exports.postLogin = (req, res, next) => {
 
     if (validationResult(req).isEmpty()) {
