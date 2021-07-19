@@ -100,6 +100,7 @@ app.get("/cancel", (req, res) => res.send("Cancelled"));
 app.get("/error", (req, res, next) => {
     res.status(500);
     res.render("error.ejs", {
+        user: req.session.userId,
         isUser: req.session.userId,
         isAdmin: req.session.isAdmin,
         pageTitle: "Error"
@@ -109,6 +110,7 @@ app.get("/error", (req, res, next) => {
 app.get("/not-admin", (req, res, next) => {
     res.status(403);
     res.render("not-admin", {
+        user: req.session.userId,
         isUser: req.session.userId,
         isAdmin: false,
         pageTitle: "Not Allowed"
@@ -118,6 +120,7 @@ app.get("/not-admin", (req, res, next) => {
 app.use((req, res, next) => {
     res.status(404);
     res.render("not-found", {
+        user: req.session.userId,
         isUser: req.session.userId,
         isAdmin: req.session.isAdmin,
         pageTitle: "Page Not Found"
