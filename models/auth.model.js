@@ -74,8 +74,8 @@ exports.createNewUser = (host1, username, email, password, fullname, country, st
 
 
                 const oauth2Client = new OAuth2(
-                    "778425843597-ab23bh9s5tga1anibbj13ktu44sdmmon.apps.googleusercontent.com", // ClientID
-                    "IY6Z5V5VN5WOfuu2yEdTcc7Y", // Client Secret
+                    "173872994719-pvsnau5mbj47h0c6ea6ojrl7gjqq1908.apps.googleusercontent.com", // ClientID
+                    "OKXIYR14wBB_zumf30EC__iJ", // Client Secret
                     "https://developers.google.com/oauthplayground" // Redirect URL
                 );
 
@@ -95,7 +95,7 @@ exports.createNewUser = (host1, username, email, password, fullname, country, st
                     service: 'gmail',
                     auth: {
                         type: "OAuth2",
-                        user: "onlineshopkeyboard@gmail.com",
+                        user: "nodejsa@gmail.com",
                         clientId: "173872994719-pvsnau5mbj47h0c6ea6ojrl7gjqq1908.apps.googleusercontent.com",
                         clientSecret: "OKXIYR14wBB_zumf30EC__iJ",
                         refreshToken: "1//04T_nqlj9UVrVCgYIARAAGAQSNwF-L9IrGm-NOdEKBOakzMn1cbbCHgg2ivkad3Q_hMyBkSQen0b5ABfR8kPR18aOoqhRrSlPm9w",
@@ -103,7 +103,7 @@ exports.createNewUser = (host1, username, email, password, fullname, country, st
                     },
                 });
                 const mailOptions = {
-                    from: '"Auth Admin" <onlineshopkeyboard@gmail.com>', // sender address
+                    from: '"Auth Admin" <nodejsa@gmail.com>', // sender address
                     to: email, // list of receivers
                     subject: "Account Verification: NodeJS Auth ✔", // Subject line
                     generateTextFromHTML: true,
