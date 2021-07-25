@@ -61,8 +61,8 @@ exports.activeacc = (req, res, next) => {
 exports.activereset = (req, res, next) => {
 
     const oauth2Client = new OAuth2(
-        "173872994719-pvsnau5mbj47h0c6ea6ojrl7gjqq1908.apps.googleusercontent.com", // ClientID
-        "OKXIYR14wBB_zumf30EC__iJ", // Client Secret
+        "778425843597-ab23bh9s5tga1anibbj13ktu44sdmmon.apps.googleusercontent.com", // ClientID
+        "IY6Z5V5VN5WOfuu2yEdTcc7Y", // Client Secret
         "https://developers.google.com/oauthplayground" // Redirect URL
     );
 
