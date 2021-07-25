@@ -61,8 +61,8 @@ exports.activeacc = (req, res, next) => {
 exports.activereset = (req, res, next) => {
 
     const oauth2Client = new OAuth2(
-        "51079954166-c1qc33i7sho6nf3srftp7pbj05iotemb.apps.googleusercontent.com", // ClientID
-        "BvF5r5E20p9Otq67PtZjvB3p", // Client Secret
+        "173872994719-pvsnau5mbj47h0c6ea6ojrl7gjqq1908.apps.googleusercontent.com", // ClientID
+        "OKXIYR14wBB_zumf30EC__iJ", // Client Secret
         "https://developers.google.com/oauthplayground" // Redirect URL
     );
 
@@ -82,15 +82,15 @@ exports.activereset = (req, res, next) => {
         service: 'gmail',
         auth: {
             type: "OAuth2",
-            user: "onlineshopkeyboard@gmail.com",
-            clientId: "51079954166-c1qc33i7sho6nf3srftp7pbj05iotemb.apps.googleusercontent.com",
-            clientSecret: "BvF5r5E20p9Otq67PtZjvB3p",
+            user: "nodejsa@gmail.com",
+            clientId: "173872994719-pvsnau5mbj47h0c6ea6ojrl7gjqq1908.apps.googleusercontent.com",
+            clientSecret: "OKXIYR14wBB_zumf30EC__iJ",
             refreshToken: "1//04T_nqlj9UVrVCgYIARAAGAQSNwF-L9IrGm-NOdEKBOakzMn1cbbCHgg2ivkad3Q_hMyBkSQen0b5ABfR8kPR18aOoqhRrSlPm9w",
 
         },
     });
     const mailOptions = {
-        from: '"Auth Admin" <onlineshopkeyboard@gmail.com>', // sender address
+        from: '"Auth Admin" <nodejsa@gmail.com>', // sender address
         to: email, // list of receivers
         subject: "Resert Password ✔", // Subject line
         generateTextFromHTML: true,
