@@ -67,7 +67,7 @@ exports.activereset = (req, res, next) => {
     );
 
     oauth2Client.setCredentials({
-        refresh_token: "1//04T_nqlj9UVrVCgYIARAAGAQSNwF-L9IrGm-NOdEKBOakzMn1cbbCHgg2ivkad3Q_hMyBkSQen0b5ABfR8kPR18aOoqhRrSlPm9w"
+        refresh_token: 'REFRESH_TOKEN_YALL'
     });
     const accessToken = oauth2Client.getAccessToken()
     const email = req.body.email
@@ -85,7 +85,7 @@ exports.activereset = (req, res, next) => {
             user: "onlineshopkeyboard@gmail.com",
             clientId: "51079954166-c1qc33i7sho6nf3srftp7pbj05iotemb.apps.googleusercontent.com",
             clientSecret: "BvF5r5E20p9Otq67PtZjvB3p",
-            refreshToken: "1//04T_nqlj9UVrVCgYIARAAGAQSNwF-L9IrGm-NOdEKBOakzMn1cbbCHgg2ivkad3Q_hMyBkSQen0b5ABfR8kPR18aOoqhRrSlPm9w",
+            refreshToken: 'REFRESH_TOKEN_YALL',
 
         },
     });
