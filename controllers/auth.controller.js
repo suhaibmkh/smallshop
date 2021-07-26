@@ -63,7 +63,7 @@ exports.activereset = (req, res, next) => {
     const oauth2Client = new OAuth2(
         "778425843597-gmbkb6gmen91etp3897s0m5hkoradids.apps.googleusercontent.com", // ClientID
         "mB9M5bwu4QosZ-EeMl0NoabE", // Client Secret
-        "https://developers.google.com/oauthplayground" // Redirect URL
+        "https://suhaib-shop.herokuapp.com/resetpass" // Redirect URL
     );
 
     oauth2Client.setCredentials({
