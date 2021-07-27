@@ -1,3 +1,4 @@
+  
 const authModel = require("../models/auth.model");
 const validationResult = require("express-validator").validationResult;
 
@@ -79,15 +80,18 @@ exports.activereset = (req, res, next) => {
     const link = host + "/verify/verifyreset?id=" + token
 
     const transporter = nodemailer.createTransport({
-        service: "Gmail",
-  auth: {
-    user: "onlineshopkeyboard@gmail.com",
-    pass: "Galaxy-so1",
+        service: 'gmail',
+        auth: {
+            type: "OAuth2",
+            user: "nodejsa@gmail.com",
+            clientId: "173872994719-pvsnau5mbj47h0c6ea6ojrl7gjqq1908.apps.googleusercontent.com",
+            clientSecret: "OKXIYR14wBB_zumf30EC__iJ",
+            refreshToken: "1//04T_nqlj9UVrVCgYIARAAGAQSNwF-L9IrGm-NOdEKBOakzMn1cbbCHgg2ivkad3Q_hMyBkSQen0b5ABfR8kPR18aOoqhRrSlPm9w",
 
         },
     });
     const mailOptions = {
-        from: '"Auth Admin" <onlineshopkeyboard@gmail.com>', // sender address
+        from: '"Auth Admin" <nodejsa@gmail.com>', // sender address
         to: email, // list of receivers
         subject: "Resert Password ✔", // Subject line
         generateTextFromHTML: true,
