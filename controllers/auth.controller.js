@@ -8,9 +8,7 @@ const bcrypt = require("bcrypt");
 const jwt = require('jsonwebtoken');
 const JWT_KEY = "jwtactive987";
 const JWT_RESET_KEY = "jwtreset987";
-const mailgun = require("mailgun-js");
-const DOMAIN = 'YOUR_DOMAIN_NAME';
-const mg = mailgun({apiKey: "apubkey-a5ff1e2b9f7df3039cb183539a560725", domain: "sandbox1600a58a01e44d6ebca284f6c5b84da2.mailgun.org"});
+
 
 exports.getSignup = (req, res, next) => {
     res.render("signup", {
@@ -63,8 +61,8 @@ exports.activeacc = (req, res, next) => {
 exports.activereset = (req, res, next) => {
 
     const oauth2Client = new OAuth2(
-        "162484603628-61upq66hab13jt9hqdhbj7duajk0dige.apps.googleusercontent.com", // ClientID
-        "rWTZX_AXWSt1LDpHETAfSRaz", // Client Secret
+        "173872994719-pvsnau5mbj47h0c6ea6ojrl7gjqq1908.apps.googleusercontent.com", // ClientID
+        "OKXIYR14wBB_zumf30EC__iJ", // Client Secret
         "https://developers.google.com/oauthplayground" // Redirect URL
     );
 
@@ -84,29 +82,20 @@ exports.activereset = (req, res, next) => {
         service: 'gmail',
         auth: {
             type: "OAuth2",
-            user: "onlineshopkeyboard@gmail.com",
-            clientId: "162484603628-61upq66hab13jt9hqdhbj7duajk0dige.apps.googleusercontent.com",
-            clientSecret: "rWTZX_AXWSt1LDpHETAfSRaz",
+            user: "nodejsa@gmail.com",
+            clientId: "173872994719-pvsnau5mbj47h0c6ea6ojrl7gjqq1908.apps.googleusercontent.com",
+            clientSecret: "OKXIYR14wBB_zumf30EC__iJ",
             refreshToken: "1//04T_nqlj9UVrVCgYIARAAGAQSNwF-L9IrGm-NOdEKBOakzMn1cbbCHgg2ivkad3Q_hMyBkSQen0b5ABfR8kPR18aOoqhRrSlPm9w",
 
         },
     });
     const mailOptions = {
-        from: '"Auth Admin" <onlineshopkeyboard@gmail.com>', // sender address
+        from: '"Auth Admin" <nodejsa@gmail.com>', // sender address
         to: email, // list of receivers
         subject: "Resert Password ✔", // Subject line
         generateTextFromHTML: true,
         html: "Hello,<br> Please Click on the link to Resert your password.<br><a href=" + link + ">Click here to reset password</a>"
     }
-    const data = {
-	from: '"Auth Admin" <me@samples.mailgun.org>',
-	to: 'email, YOU@YOUR_DOMAIN_NAME',
-	subject: "Resert Password ✔",
-	 html: "Hello,<br> Please Click on the link to Resert your password.<br><a href=" + link + ">Click here to reset password</a>"
-};
-mg.messages().send(data, function (error, body) {
-	console.log(body);
-});
 
     transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
