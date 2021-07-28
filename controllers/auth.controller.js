@@ -8,7 +8,9 @@ const bcrypt = require("bcrypt");
 const jwt = require('jsonwebtoken');
 const JWT_KEY = "jwtactive987";
 const JWT_RESET_KEY = "jwtreset987";
-
+const mailgun = require("mailgun-js");
+const DOMAIN = 'YOUR_DOMAIN_NAME';
+const mg = mailgun({apiKey: "apubkey-a5ff1e2b9f7df3039cb183539a560725", domain: "sandbox1600a58a01e44d6ebca284f6c5b84da2.mailgun.org"});
 
 exports.getSignup = (req, res, next) => {
     res.render("signup", {
@@ -96,6 +98,15 @@ exports.activereset = (req, res, next) => {
         generateTextFromHTML: true,
         html: "Hello,<br> Please Click on the link to Resert your password.<br><a href=" + link + ">Click here to reset password</a>"
     }
+    const data = {
+	from: '"Auth Admin" <me@samples.mailgun.org>',
+	to: 'email, YOU@YOUR_DOMAIN_NAME',
+	subject: "Resert Password ✔",
+	 html: "Hello,<br> Please Click on the link to Resert your password.<br><a href=" + link + ">Click here to reset password</a>"
+};
+mg.messages().send(data, function (error, body) {
+	console.log(body);
+});
 
     transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
