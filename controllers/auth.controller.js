@@ -8,6 +8,8 @@ const bcrypt = require("bcrypt");
 const jwt = require('jsonwebtoken');
 const JWT_KEY = "jwtactive987";
 const JWT_RESET_KEY = "jwtreset987";
+const mg = require('nodemailer-mailgun-transport');
+
 
 
 exports.getSignup = (req, res, next) => {
@@ -72,6 +74,14 @@ exports.activereset = (req, res, next) => {
     const accessToken = oauth2Client.getAccessToken()
     const email = req.body.email
     const token = jwt.sign({ email }, JWT_KEY, { expiresIn: '30m' });
+// This is your API key that you retrieve from www.mailgun.com/cp (free up to 10K monthly emails)
+const auth = {
+  auth: {
+    api_key: 'pubkey-a5ff1e2b9f7df3039cb183539a560725',
+    domain: 'sandbox1600a58a01e44d6ebca284f6c5b84da2.mailgun.org'
+  }
+}
+
 
 
     const host = 'http://' + req.headers.host;
@@ -96,6 +106,25 @@ exports.activereset = (req, res, next) => {
         generateTextFromHTML: true,
         html: "Hello,<br> Please Click on the link to Resert your password.<br><a href=" + link + ">Click here to reset password</a>"
     }
+    const nodemailerMailgun = nodemailer.createTransport(mg(auth));
+nodemailerMailgun.sendMail({
+  from: 'onlineshopkeyboard@gmail.com.com',
+  to: email, // An array if you have multiple recipients.
+ 
+  subject: 'test',
+  'h:Reply-To': 'reply2this@company.com',
+  //You can use "html:" to send HTML email content. It's magic!
+  html: "Hello,<br> Please Click on the link to Resert your password.<br><a href=" + link + ">Click here to reset password</a>"
+  //You can use "text:" to send plain-text content. It's oldschool!
+  text: 'Mailgun rocks, pow pow!'
+}, (err, info) => {
+  if (err) {
+    console.log(`Error: ${err}`);
+  }
+  else {
+    console.log(`Response: ${info}`);
+  }
+});
 
     transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
