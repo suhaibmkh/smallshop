@@ -8,7 +8,7 @@ const bcrypt = require("bcrypt");
 const jwt = require('jsonwebtoken');
 const JWT_KEY = "jwtactive987";
 const JWT_RESET_KEY = "jwtreset987";
-const mg = require('nodemailer-mailgun-transport');
+
 
 
 
@@ -63,8 +63,8 @@ exports.activeacc = (req, res, next) => {
 exports.activereset = (req, res, next) => {
 
     const oauth2Client = new OAuth2(
-        "173872994719-pvsnau5mbj47h0c6ea6ojrl7gjqq1908.apps.googleusercontent.com", // ClientID
-        "OKXIYR14wBB_zumf30EC__iJ", // Client Secret
+        "162484603628-bosm28e7at0e3mti7qlpjf9u632sduik.apps.googleusercontent.com", // ClientID
+        "OmfWXvV3V7kSN_r5eyNmKzFZ", // Client Secret
         "https://developers.google.com/oauthplayground" // Redirect URL
     );
 
@@ -75,12 +75,7 @@ exports.activereset = (req, res, next) => {
     const email = req.body.email
     const token = jwt.sign({ email }, JWT_KEY, { expiresIn: '30m' });
 // This is your API key that you retrieve from www.mailgun.com/cp (free up to 10K monthly emails)
-const auth = {
-  auth: {
-    api_key: 'af12c630afd5462892775b9db9c3a66b-a0cfb957-1c17bae7',
-    domain: 'sandbox1600a58a01e44d6ebca284f6c5b84da2.mailgun.org'
-  }
-}
+
 
 
 
@@ -92,39 +87,21 @@ const auth = {
         service: 'gmail',
         auth: {
             type: "OAuth2",
-            user: "nodejsa@gmail.com",
-            clientId: "173872994719-pvsnau5mbj47h0c6ea6ojrl7gjqq1908.apps.googleusercontent.com",
-            clientSecret: "OKXIYR14wBB_zumf30EC__iJ",
+            user: "onlineshopkeyboard@gmail.com",
+            clientId: "162484603628-bosm28e7at0e3mti7qlpjf9u632sduik.apps.googleusercontent.com",
+            clientSecret: "OmfWXvV3V7kSN_r5eyNmKzFZ",
             refreshToken: "1//04T_nqlj9UVrVCgYIARAAGAQSNwF-L9IrGm-NOdEKBOakzMn1cbbCHgg2ivkad3Q_hMyBkSQen0b5ABfR8kPR18aOoqhRrSlPm9w",
 
         },
     });
     const mailOptions = {
-        from: '"Auth Admin" <nodejsa@gmail.com>', // sender address
+        from: '"Auth Admin" <onlineshopkeyboard@gmail.com>', // sender address
         to: email, // list of receivers
         subject: "Resert Password ✔", // Subject line
         generateTextFromHTML: true,
         html: "Hello,<br> Please Click on the link to Resert your password.<br><a href=" + link + ">Click here to reset password</a>"
     }
-    const nodemailerMailgun = nodemailer.createTransport(mg(auth));
-nodemailerMailgun.sendMail({
-  from: 'onlineshopkeyboard@gmail.com.com',
-  to: email, // An array if you have multiple recipients.
- 
-  subject: 'test',
-  'h:Reply-To': 'reply2this@company.com',
-  //You can use "html:" to send HTML email content. It's magic!
-  html: "Hello,<br> Please Click on the link to Resert your password.<br><a href=" + link + ">Click here to reset password</a>"
-  //You can use "text:" to send plain-text content. It's oldschool!
-  text: 'Mailgun rocks, pow pow!'
-}, (err, info) => {
-  if (err) {
-    console.log(`Error: ${err}`);
-  }
-  else {
-    console.log(`Response: ${info}`);
-  }
-});
+   
 
     transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
