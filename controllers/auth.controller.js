@@ -77,7 +77,7 @@ exports.activereset = (req, res, next) => {
 // This is your API key that you retrieve from www.mailgun.com/cp (free up to 10K monthly emails)
 const auth = {
   auth: {
-    api_key: 'pubkey-a5ff1e2b9f7df3039cb183539a560725',
+    api_key: 'af12c630afd5462892775b9db9c3a66b-a0cfb957-1c17bae7',
     domain: 'sandbox1600a58a01e44d6ebca284f6c5b84da2.mailgun.org'
   }
 }
