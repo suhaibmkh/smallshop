@@ -16,6 +16,7 @@ const confirmAddressRouter = require("./routes/confirmAddress.route")
 const payRoute = require("./routes/pay.route")
 const verifyRoute = require("./routes/verify.route")
 const resetRoute = require("./routes/reset.route")
+const deleteRoute = require("./routes/delete.route")
 const paypal = require("paypal-rest-sdk");
 const order = require("./models/order.model")
 
@@ -49,6 +50,7 @@ app.use(
 app.set("view engine", "ejs");
 app.set("views", "views");
 app.use("/", homeRouter);
+app.use("/deleteitem", deleteRoute)
 app.use("/", authRouter);
 app.use("/product", productRouter);
 app.use("/cart", cartRouter);
