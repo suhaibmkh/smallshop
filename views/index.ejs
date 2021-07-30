@@ -139,6 +139,14 @@
                                                     <input type="hidden" name="redirectTo" value="/">
                                                     <input type="submit" value="Add to cart" style="background-color:#FFDE71;width:100%;border-radius: 8px;">
                                                 </form>
+                                                <%if(isAdmin){%>
+                                                    <form action="/deleteitem" method="POST">
+
+                                                        <input type="hidden" name="productId" value="<%= product._id%>">
+
+                                                        <input type="submit" value="delete item" style="background-color:#FFDE71;width:100%;border-radius: 8px;">
+                                                    </form>
+                                                    <%}%>
                                             </div>
                                         </div>
                                     </div>
