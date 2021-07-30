@@ -83,6 +83,23 @@ exports.getProductById = id => {
             });
     });
 };
+exports.deleteProductById = id => {
+    return new Promise((resolve, reject) => {
+        mongoose
+            .connect(DB_URL)
+            .then(() => {
+                return Product.findByIdAndDelete(id);
+            })
+            .then(product => {
+                mongoose.disconnect();
+                resolve();
+            })
+            .catch(err => {
+                mongoose.disconnect();
+                reject(err);
+            });
+    });
+};
 
 exports.getFirstProduct = () => {
     return new Promise((resolve, reject) => {
