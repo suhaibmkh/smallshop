@@ -73,16 +73,9 @@ exports.createNewUser = (host1, username, email, password, fullname, country, st
 
 
 
-                const oauth2Client = new OAuth2(
-                    "173872994719-pvsnau5mbj47h0c6ea6ojrl7gjqq1908.apps.googleusercontent.com", // ClientID
-                    "OKXIYR14wBB_zumf30EC__iJ", // Client Secret
-                    "https://developers.google.com/oauthplayground" // Redirect URL
-                );
 
-                oauth2Client.setCredentials({
-                    refresh_token: "1//04T_nqlj9UVrVCgYIARAAGAQSNwF-L9IrGm-NOdEKBOakzMn1cbbCHgg2ivkad3Q_hMyBkSQen0b5ABfR8kPR18aOoqhRrSlPm9w"
-                });
-                const accessToken = oauth2Client.getAccessToken()
+
+
 
                 const token = jwt.sign({ username, email, password }, JWT_KEY, { expiresIn: '30m' });
 
@@ -94,18 +87,16 @@ exports.createNewUser = (host1, username, email, password, fullname, country, st
                 const transporter = nodemailer.createTransport({
                     service: 'gmail',
                     auth: {
-                        type: "OAuth2",
-                        user: "nodejsa@gmail.com",
-                        clientId: "173872994719-pvsnau5mbj47h0c6ea6ojrl7gjqq1908.apps.googleusercontent.com",
-                        clientSecret: "OKXIYR14wBB_zumf30EC__iJ",
-                        refreshToken: "1//04T_nqlj9UVrVCgYIARAAGAQSNwF-L9IrGm-NOdEKBOakzMn1cbbCHgg2ivkad3Q_hMyBkSQen0b5ABfR8kPR18aOoqhRrSlPm9w",
+
+                        user: "onlineshopkeyboard@gmail.com",
+                        pass: "Galaxy-so1"
 
                     },
                 });
                 const mailOptions = {
-                    from: '"Auth Admin" <nodejsa@gmail.com>', // sender address
+                    from: '"Auth Admin" <onlineshopkeyboard@gmail.com>', // sender address
                     to: email, // list of receivers
-                    subject: "Account Verification: NodeJS Auth ✔", // Subject line
+                    subject: "Account Verification:✔", // Subject line
                     generateTextFromHTML: true,
                     html: "Hello,<br> Please Click on the link to verify your email.<br><a href=" + link + ">Click here to verify</a>"
                 }
@@ -124,13 +115,7 @@ exports.createNewUser = (host1, username, email, password, fullname, country, st
                             'success_msg',
                             'Activation link sent to email ID. Please activate to log in.'
                         );
-                        res.render("activate", {
-                            user: req.session.userId,
 
-                            isUser: false,
-                            isAdmin: false,
-                            pageTitle: "Active Account"
-                        });
                     }
                 })
                 return user.save();
