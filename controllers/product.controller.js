@@ -14,6 +14,13 @@ exports.getProduct = (req, res, next) => {
         })
         .catch(err => res.redirect("/error"));
 };
+exports.deleteItem = (req, res, next) => {
+
+    productsModel.deleteProductById(req.body.productId)
+        .then(() => {
+            res.redirect("/")
+        })
+}
 
 exports.getProductById = (req, res, next) => {
     let id = req.params.id;
