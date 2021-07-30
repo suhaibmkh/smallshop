@@ -10,8 +10,6 @@ const JWT_KEY = "jwtactive987";
 const JWT_RESET_KEY = "jwtreset987";
 
 
-
-
 exports.getSignup = (req, res, next) => {
     res.render("signup", {
         user: req.session.userId,
@@ -62,16 +60,7 @@ exports.activeacc = (req, res, next) => {
 }
 exports.activereset = (req, res, next) => {
 
-     const oauth2Client = new OAuth2(
-        "173872994719-pvsnau5mbj47h0c6ea6ojrl7gjqq1908.apps.googleusercontent.com", // ClientID
-        "OKXIYR14wBB_zumf30EC__iJ", // Client Secret
-        "https://developers.google.com/oauthplayground" // Redirect URL
-    );
 
-    oauth2Client.setCredentials({
-        refresh_token: "1//04T_nqlj9UVrVCgYIARAAGAQSNwF-L9IrGm-NOdEKBOakzMn1cbbCHgg2ivkad3Q_hMyBkSQen0b5ABfR8kPR18aOoqhRrSlPm9w"
-    });
-    const accessToken = oauth2Client.getAccessToken()
     const email = req.body.email
     const token = jwt.sign({ email }, JWT_KEY, { expiresIn: '30m' });
 
@@ -83,22 +72,22 @@ exports.activereset = (req, res, next) => {
     const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-            type: "OAuth2",
-            user: "nodejsa@gmail.com",
-            clientId: "173872994719-pvsnau5mbj47h0c6ea6ojrl7gjqq1908.apps.googleusercontent.com",
-            clientSecret: "OKXIYR14wBB_zumf30EC__iJ",
-            refreshToken: "1//04T_nqlj9UVrVCgYIARAAGAQSNwF-L9IrGm-NOdEKBOakzMn1cbbCHgg2ivkad3Q_hMyBkSQen0b5ABfR8kPR18aOoqhRrSlPm9w",
+
+            user: "onlineshopkeyboard@gmail.com",
+            pass: "Galaxy-so1"
 
         },
     });
+
+
+
     const mailOptions = {
-        from: '"Auth Admin" <nodejsa@gmail.com>', // sender address
+        from: '"Auth Admin" <onlineshopkeyboard@gmail.com>', // sender address
         to: email, // list of receivers
         subject: "Resert Password ✔", // Subject line
-        generateTextFromHTML: true,
+
         html: "Hello,<br> Please Click on the link to Resert your password.<br><a href=" + link + ">Click here to reset password</a>"
     }
-   
 
     transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
